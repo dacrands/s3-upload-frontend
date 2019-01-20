@@ -1,12 +1,12 @@
 import React from 'react'
-import { navigate } from 'gatsby'
+import { navigate, Link } from 'gatsby'
 
 class Files extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            objects: []
+            files: []
         };
     }
 
@@ -22,7 +22,7 @@ class Files extends React.Component {
                 return res.json()
             })
             .then(response => {
-                this.setState({ objects: response.objects })
+                this.setState({ files: response.files })
                 return
             })
             .catch(e => {
@@ -39,20 +39,25 @@ class Files extends React.Component {
                 </header>
                 <div className="files">
                     {
-                        this.state.objects[0]
-                        ?
-                        this.state.objects.map(obj => (
-                            <div className="files__item" key={obj.link}>
-                                <a href={obj.link}>
-                                    {obj.name}
-                                </a>                            
-                            </div>
+                        this.state.files[0]
+                        ? this.state.files.map(file => (
+                            <Link 
+                                className="files__item" key={file.name}
+                                to="/file"
+                                state={{
+                                    file: file.name,
+                                    body: file.body,
+                                    id: file.id
+                                }}
+
+                            >
+                                <h3>{file.name}</h3> 
+                                <p>{file.body}</p>                        
+                            </Link>
                         ))
-                        :
-                        null
+                        : null
                     }
                 </div>
-                
             </div>
         )
     }

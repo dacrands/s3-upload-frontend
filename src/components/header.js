@@ -13,13 +13,13 @@ const Header = ({ siteTitle }) => (
 
     <ul className="navbar__links">
       <li>
-        <Link to="/page-2">Info</Link>
+        <Link to="/page-2" activeStyle={{textDecoration: 'underline'}}>Info</Link>
       </li>
       <li>
-        <Link to="/upload">Upload</Link>
+        <Link to="/upload" activeStyle={{textDecoration: 'underline'}}>Upload</Link>
       </li>      
       <li>
-        <Link to="/page-2">Logout</Link>
+        <Link to="/login" activeStyle={{textDecoration: 'underline'}}>Logout</Link>
       </li>      
     </ul> 
   </nav>

@@ -5,10 +5,19 @@ import { setUser } from '../utils/auth'
 class Upload extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.state = {
+            text: ''
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)        
         this.fileInput = React.createRef()
     }
 
+
+    handleChange(event) {
+        let value = event.target.name;
+        this.setState({ [value]: event.target.value });
+    }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -40,14 +49,28 @@ class Upload extends React.Component {
 
             <form className="form" onSubmit={this.handleSubmit}>
                 <label htmlFor="file">
-                    File: {` `}          
-                    <input 
-                        type="file" 
-                        name="file" 
-                        id="file" 
-                        ref={this.fileInput}/>
-                    </label>
-                <br/>
+                    File:
+                    <br/>
+                    <input
+                        type="file"
+                        name="file"
+                        id="file"
+                        ref={this.fileInput} />
+                </label>
+                <label htmlFor="text">
+                    File Info:
+                <br />
+                    <textarea 
+                        type="text" 
+                        name="text" 
+                        id="text" 
+                        rows="5" 
+                        cols="30"
+                        value={this.state.text} onChange={this.handleChange}
+                    />
+
+                    
+                </label>
                 <input type="submit" value="Submit" />
             </form>
 

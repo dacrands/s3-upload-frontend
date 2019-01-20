@@ -624,8 +624,9 @@ pre tt:after {
         ME
 $%$%$%$%%$%$%$%$$%$% */
 
-.header {
-  padding: 2rem 0;  
+.header { 
+  padding-top: 2rem;  
+  /* margin: 1rem; */
   border-bottom: 1px solid black;
 }
 
@@ -647,8 +648,8 @@ $%$%$%$%%$%$%$%$$%$% */
   text-decoration: none;
 }
 
-.navbar--active {
-  color: orange;
+.navbar a:hover {
+  text-decoration: underline;
 }
 
 .navbar__links {
@@ -669,20 +670,35 @@ $%$%$%$%%$%$%$%$$%$% */
   display: inline-block;
 }
 
+
+.box {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.box__item {
+  margin: 1rem;
+  border: 1px dotted black;
+  padding: 1em;
+  min-width: 200px;
+}
+
 .files {
   display: grid;
   grid-template-columns: repeat(auto-fill, 250px);
-  grid-auto-rows: 150px;
+  /* grid-auto-rows: 150px; */
   /* grid-auto-flow: row dense;  */
+  grid-gap: 1rem;
   justify-content: center; 
+  margin-top: 2rem;
 }
 
 .files__item {
   /* outline: 1px solid red; */
   border: 1px dotted black;
   /* float: left; */
-  margin: 1rem;
-  padding: .25rem;
+  /* margin: 1rem; */
+  padding: 1rem;
   position: relative;
 }
 
@@ -706,10 +722,16 @@ $%$%$%$%%$%$%$%$$%$% */
 
 .form label {  
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
 }
 
 .form input[type="submit"] {
   background: #000;
   color: #f9f9f9;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.form textarea {
+  border: 1px dotted black;
 }
