@@ -627,6 +627,7 @@ $%$%$%$%%$%$%$%$$%$% */
 .header { 
   padding-top: 2rem;  
   /* margin: 1rem; */
+  margin-bottom: 1rem;
   border-bottom: 1px solid black;
 }
 
@@ -700,7 +701,19 @@ $%$%$%$%%$%$%$%$$%$% */
   /* margin: 1rem; */
   padding: 1rem;
   position: relative;
+  color: rgb(106, 106, 122);
+  transition: all 200ms ease;
 }
+
+.files__item {
+  text-decoration: none;
+}
+
+.files__item:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
 
 .files__item::after {
   position: absolute;

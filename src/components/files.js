@@ -18,7 +18,6 @@ class Files extends React.Component {
                 if (res.status !== 200) {
                     throw (res)
                 }
-                // console.log(res.json())
                 return res.json()
             })
             .then(response => {
@@ -26,7 +25,8 @@ class Files extends React.Component {
                 return
             })
             .catch(e => {
-                console.error(e)
+                console.error(e.text)
+                navigate('/err', {state: {err: e.status, errText: e.statusText}})
                 return
             })
     }
@@ -47,7 +47,7 @@ class Files extends React.Component {
                                 state={{
                                     file: file.name,
                                     body: file.body,
-                                    id: file.id
+                                    id: file.id,
                                 }}
 
                             >

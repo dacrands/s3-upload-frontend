@@ -2,28 +2,43 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const Header = ({ siteTitle }) => (
-  <nav className="navbar">
+import { getUser } from '../utils/auth'
+
+const Header = ({ siteTitle }) => {
+  if (getUser() === "no one") {
+    return <nav className="navbar">
+      <Link
+        to="/"
+        activeStyle={{ textDecoration: 'underline' }}
+      >
+        <h2>File Uploader</h2>
+      </Link>
+
+      <ul className="navbar__links">
+        <li>
+          <Link to="/login" activeStyle={{ textDecoration: 'underline' }}>Login</Link>
+        </li>
+      </ul>
+    </nav>
+  }
+  return <nav className="navbar">
     <Link
       to="/"
-      activeStyle={{textDecoration: 'underline'}}
+      activeStyle={{ textDecoration: 'underline' }}
     >
       <h2>File Uploader</h2>
-    </Link>   
+    </Link>
 
     <ul className="navbar__links">
       <li>
-        <Link to="/page-2" activeStyle={{textDecoration: 'underline'}}>Info</Link>
+        <Link to="/upload" activeStyle={{ textDecoration: 'underline' }}>Upload</Link>
       </li>
       <li>
-        <Link to="/upload" activeStyle={{textDecoration: 'underline'}}>Upload</Link>
-      </li>      
-      <li>
-        <Link to="/login" activeStyle={{textDecoration: 'underline'}}>Logout</Link>
-      </li>      
-    </ul> 
+        <Link to="/logout" activeStyle={{ textDecoration: 'underline' }}>Logout</Link>
+      </li>
+    </ul>
   </nav>
-)
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

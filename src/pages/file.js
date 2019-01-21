@@ -11,10 +11,11 @@ class File extends Component {
         this.state = {
             file: 'No file selected',
             body: '',
-            id: -1,
             date: '--, -- --- ---- --:--:-- ---',
             url: '',
+            id: -1,
             size: 0,
+            didUpdate: false
         };
         this.getFile = this.getFile.bind(this)
     }
@@ -23,11 +24,14 @@ class File extends Component {
         const file = this.props.location.state.file
         const body = this.props.location.state.body
         const id = this.props.location.state.id
-        this.setState({ file, body, id })
+        this.setState({ file, body, id, didUpdate: false })
     }
     
     componentDidUpdate() {
-        this.getFile()
+        if (!this.state.didUpdate) {
+            this.getFile()
+            this.setState({ didUpdate: true })
+        }        
     }
 
     getFile(){
@@ -64,7 +68,7 @@ class File extends Component {
                 </header>
                 <section className="box">
                     <div className="box__item">
-                        <h3>Desc.</h3>                        
+                        <h3>Description</h3>                        
                         <p>{this.state.body}</p>
                     </div>                                        
                     <div className="box__item">

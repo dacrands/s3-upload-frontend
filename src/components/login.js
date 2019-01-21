@@ -32,10 +32,12 @@ class Login extends React.Component {
                 if (res.status !== 200) {
                     throw (res)
                 }
-                res.json()
+                return res.json()
             })
             .then(response => {
-                navigate(`/page-2/`)
+                console.log(response)
+                setUser(response.username)
+                navigate(`/`)
                 return
             })
             .catch(e => {

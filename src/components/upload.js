@@ -40,6 +40,7 @@ class Upload extends React.Component {
             })
             .catch(e => {
                 console.error(e)
+                navigate('/err', {state: {err: e.status, errText: e.statusText}})
                 return
             })
     }
