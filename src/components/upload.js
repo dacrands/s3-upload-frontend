@@ -6,7 +6,8 @@ class Upload extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            text: '',
+            isSubmitting: false,
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)        
@@ -22,7 +23,7 @@ class Upload extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-
+        this.setState({ isSubmitting: true })
         fetch('http://192.168.0.115:5000/files', {
             method: "POST",
             body: data,
@@ -35,17 +36,24 @@ class Upload extends React.Component {
                 res.json()
             })
             .then(response => {
+                this.setState({ isSubmitting: false })
                 navigate(`/`)
                 return
             })
             .catch(e => {
                 console.error(e)
+                this.setState({ isSubmitting: false })
                 navigate('/err', {state: {err: e.status, errText: e.statusText}})
                 return
             })
     }
 
     render() {
+        if(this.state.isSubmitting) {
+            return <div className="loading">
+                <h1>Submitting file...</h1>
+            </div>
+        }
         return (
 
             <form className="form" onSubmit={this.handleSubmit}>

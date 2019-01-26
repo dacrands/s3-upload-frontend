@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -15,9 +15,11 @@ class File extends Component {
             url: '',
             id: -1,
             size: 0,
-            didUpdate: false
+            didUpdate: false,
+            isDeleting: false,
         };
         this.getFile = this.getFile.bind(this)
+        this.deleteFile = this.deleteFile.bind(this)
     }
 
     componentDidMount() {
@@ -32,6 +34,30 @@ class File extends Component {
             this.getFile()
             this.setState({ didUpdate: true })
         }        
+    }
+
+    deleteFile() {
+        this.setState({ isDeleting: true })
+        fetch(`http://192.168.0.115:5000/files/${this.state.id}/delete`, {
+            credentials: 'include',
+            method: 'DELETE',
+        })
+        .then(res => {
+            if(res.status !== 200) {
+                throw(res)
+            }
+            return res.json()
+        })
+        .then(response => {
+            this.setState({ isDeleting: false })
+            navigate('/')            
+            return
+        })
+        .catch(e => {
+            alert(e)
+            this.setState({ isDeleting: false })
+            return
+        })
     }
 
     getFile(){
@@ -60,6 +86,13 @@ class File extends Component {
 
 
     render() {
+        if(this.state.isDeleting) {
+            return <Layout>
+                <header className="header">
+                    <h1>Deleting file...</h1>
+                </header>                
+            </Layout>
+        }
         return (
             <Layout>
                 <SEO title="Page two" />
@@ -67,10 +100,15 @@ class File extends Component {
                     <h1>{this.state.file}</h1>                   
                 </header>
                 <section className="box">
-                    <div className="box__item">
-                        <h3>Description</h3>                        
-                        <p>{this.state.body}</p>
-                    </div>                                        
+                    {
+                        this.state.body.length < 1
+                        ?  null
+                        :  <div className="box__item box__item--desc">                    
+                            <h3>Description</h3>                        
+                            <p>{this.state.body}</p>
+                        </div> 
+                    }
+                                                          
                     <div className="box__item">
                         <h3>Upload Date</h3>                        
                         <p>{this.state.date}</p>
@@ -84,6 +122,12 @@ class File extends Component {
                         <a href={this.state.url}>
                             Click Here to Download
                         </a>
+                    </div>
+                    <div className="box__item box__item--warning">
+                        <h3>Delete</h3>                        
+                        <button onClick={this.deleteFile}>
+                            Click Here to Delete
+                        </button>
                     </div>
 
                 </section>

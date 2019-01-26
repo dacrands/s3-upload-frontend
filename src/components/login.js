@@ -7,9 +7,9 @@ class Login extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            err: '',
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -22,33 +22,31 @@ class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-
         fetch('http://192.168.0.115:5000/login', {
-            method: "POST",
+            method: 'POST',
             body: data,
             credentials: 'include',
         })
             .then(res => {
-                if (res.status !== 200) {
-                    throw (res)
-                }
                 return res.json()
             })
-            .then(response => {
-                console.log(response)
+            .then(response => {    
+                if(response.err) {
+                    alert(response.err)
+                    this.setState({username: '', password: ''})   
+                    return
+                }            
                 setUser(response.username)
                 navigate(`/`)
                 return
             })
             .catch(e => {
                 console.error(e)
-                return
             })
     }
 
     render() {
         return (
-
             <form className="form" onSubmit={this.handleSubmit}>
                 <h1>Login</h1>
                 <label htmlFor="username">
@@ -57,11 +55,10 @@ class Login extends React.Component {
                     <input type="text" name="username" id="username" value={this.state.username} onChange={this.handleChange} /></label>
                 <label htmlFor="password">
                     Password
-          <br />
+                    <br />
                     <input type="password" name="password" id="password" value={this.state.password} onChange={this.handleChange} /></label>
                 <input type="submit" value="Submit" />
             </form>
-
         )
     }
 }

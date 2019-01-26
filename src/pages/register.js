@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
-import Files from '../components/files'
+import Register from '../components/register'
 import SEO from '../components/seo'
 
-const IndexPage = () => (
+const RegisterPage = () => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <Files/>
+    <Register />
   </Layout>
 )
 
-export default IndexPage
+export default RegisterPage

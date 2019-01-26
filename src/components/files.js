@@ -35,7 +35,7 @@ class Files extends React.Component {
         return (
             <div>
                 <header className="header">
-                    <h1>Files</h1>
+                    <h1>{this.state.files.length} Files</h1>
                 </header>
                 <div className="files">
                     {

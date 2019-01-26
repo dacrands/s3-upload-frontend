@@ -630,6 +630,20 @@ $%$%$%$%%$%$%$%$$%$% */
   margin-bottom: 1rem;
   border-bottom: 1px solid black;
 }
+.footer {
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background: rgb(39, 39, 41);
+  color: #f9f9f9;
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.footer a {
+  color: #f9f9f9;
+}
+
+
 
 .navbar {
   background: rgb(39, 39, 41);
@@ -684,12 +698,32 @@ $%$%$%$%%$%$%$%$$%$% */
   min-width: 200px;
 }
 
+.box__item--desc p {
+  max-width: 400px;
+}
+
+.box__item--warning {
+  border: 1px dotted red;
+  color: red;
+}
+
+.box__item--warning button {
+  /* background: red; */
+  /* color: #f9f9f9; */
+  cursor: pointer;
+  padding: 0;
+  color: red;
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
 .files {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
+  grid-template-columns: repeat(auto-fill, 350px);
   /* grid-auto-rows: 150px; */
   /* grid-auto-flow: row dense;  */
-  grid-gap: 1rem;
+  grid-gap: 3rem;
   justify-content: center; 
   margin-top: 2rem;
 }
@@ -703,6 +737,7 @@ $%$%$%$%%$%$%$%$$%$% */
   position: relative;
   color: rgb(106, 106, 122);
   transition: all 200ms ease;
+  /* height: min-content; */
 }
 
 .files__item {
@@ -743,6 +778,15 @@ $%$%$%$%%$%$%$%$$%$% */
   color: #f9f9f9;
   padding: .5rem;
   cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.form input[type="submit"]:hover {
+  background: #224adb;
+}
+
+.form small {
+  color: #959d9e;
 }
 
 .form textarea {
