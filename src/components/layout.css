@@ -628,7 +628,7 @@ $%$%$%$%%$%$%$%$$%$% */
   padding-top: 2rem;  
   /* margin: 1rem; */
   margin-bottom: 1rem;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(39, 39, 41);
 }
 .footer {
   margin-top: 2rem;
@@ -693,12 +693,34 @@ $%$%$%$%%$%$%$%$$%$% */
 
 .box__item {
   margin: 1rem;
-  border: 1px dotted black;
+  border: 1px dotted rgb(39, 39, 41);
   padding: 1em;
   min-width: 200px;
 }
 
-.box__item--desc p {
+.box__item-desc {
+  position: relative;
+}
+
+.box__item-desc button {
+  /* display: inline; */
+  /* float: right; */
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(39, 39, 41);
+  color: white;
+}
+
+.box__item-desc input[type="submit"] {
+  cursor: pointer;
+  display: block;
+  background: rgb(39, 39, 41);
+  color: white;
+}
+
+.box__item-desc p {
   max-width: 400px;
 }
 

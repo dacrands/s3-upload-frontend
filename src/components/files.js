@@ -6,11 +6,13 @@ class Files extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            files: []
+            files: [],
+            isLoading: true,
         };
     }
 
     componentDidMount() {
+        this.setState({ isLoading:true })
         fetch('http://192.168.0.115:5000/files', {
             credentials: 'include'
         })
@@ -20,8 +22,9 @@ class Files extends React.Component {
                 }
                 return res.json()
             })
-            .then(response => {
+            .then(response => {                
                 this.setState({ files: response.files })
+                this.setState({ isLoading:false })
                 return
             })
             .catch(e => {
@@ -32,6 +35,11 @@ class Files extends React.Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <header className="header">
+                <h1>Loading...</h1>
+            </header>
+        }
         return (
             <div>
                 <header className="header">

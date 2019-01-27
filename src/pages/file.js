@@ -11,22 +11,28 @@ class File extends Component {
         this.state = {
             file: 'No file selected',
             body: '',
+            mainBody: '',
             date: '--, -- --- ---- --:--:-- ---',
             url: '',
             id: -1,
             size: 0,
             didUpdate: false,
             isDeleting: false,
+            isEditing: false,
         };
         this.getFile = this.getFile.bind(this)
         this.deleteFile = this.deleteFile.bind(this)
+        this.editFile = this.editFile.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
         const file = this.props.location.state.file
         const body = this.props.location.state.body
+        const mainBody = this.props.location.state.body
         const id = this.props.location.state.id
-        this.setState({ file, body, id, didUpdate: false })
+        this.setState({ file, body, id, mainBody, didUpdate: false })
     }
     
     componentDidUpdate() {
@@ -36,7 +42,47 @@ class File extends Component {
         }        
     }
 
+    handleChange(event) {
+        let value = event.target.name
+        this.setState({ [value]: event.target.value })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        this.editFile(data);
+    }
+
+    editFile(data) {
+        fetch(`http://192.168.0.115:5000/files/${this.state.id}/edit`, {
+            credentials: 'include',
+            body: data,
+            method: 'PATCH',
+        })
+        .then(res => {
+            if(res.status !== 200) {
+                throw(res)
+            }
+            return res.json()
+        })
+        .then(response => {  
+            this.getFile()   
+            this.setState({ isEditing: false })     
+            return
+        })
+        .catch(e => {
+            alert(e)
+            this.setState({ isEditing: false })
+            return
+        })
+    }
+
     deleteFile() {
+        const confirmed = window.confirm(`You are about to delete ${this.state.file}. This action can not be undone.`)
+        if(!confirmed) {
+            return
+        }
+        
         this.setState({ isDeleting: true })
         fetch(`http://192.168.0.115:5000/files/${this.state.id}/delete`, {
             credentials: 'include',
@@ -75,6 +121,8 @@ class File extends Component {
                 date: response.file.date,
                 size: response.file.size,
                 url: response.file.url,
+                body: response.file.body,
+                mainBody: response.file.body,
             })
             return
         })
@@ -100,14 +148,36 @@ class File extends Component {
                     <h1>{this.state.file}</h1>                   
                 </header>
                 <section className="box">
-                    {
+                    {/* {
                         this.state.body.length < 1
                         ?  null
                         :  <div className="box__item box__item--desc">                    
                             <h3>Description</h3>                        
                             <p>{this.state.body}</p>
                         </div> 
-                    }
+                    } */}
+                    <div className="box__item box__item-desc">                    
+                            <h3>Description</h3>    
+                            <button onClick={() => {this.setState({ isEditing: !this.state.isEditing })}}
+                            >
+                                {this.state.isEditing ? "\u2715" : "\u270E" }
+                            </button>   
+                            {
+                                !this.state.isEditing
+                                ? <p>{this.state.mainBody}</p>                            
+                                : <form onSubmit={this.handleSubmit}>
+                                    <textarea 
+                                        cols="40" 
+                                        rows="5" 
+                                        type="text" 
+                                        name="body"
+                                        value={this.state.body}
+                                        onChange={this.handleChange}
+                                   />
+                                    <input type="submit" value="Submit"/>
+                                </form>                                                                
+                            }                                             
+                        </div> 
                                                           
                     <div className="box__item">
                         <h3>Upload Date</h3>                        
