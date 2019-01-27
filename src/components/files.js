@@ -7,8 +7,11 @@ class Files extends React.Component {
         super(props);
         this.state = {
             files: [],
+            filteredFiles: [],
+            searchTerm: '',
             isLoading: true,
         };
+        this.filterFiles =  this.filterFiles.bind(this)
     }
 
     componentDidMount() {
@@ -23,7 +26,7 @@ class Files extends React.Component {
                 return res.json()
             })
             .then(response => {                
-                this.setState({ files: response.files })
+                this.setState({ files: response.files, filteredFiles: response.files, searchTerm: '' })
                 this.setState({ isLoading:false })
                 return
             })
@@ -32,6 +35,13 @@ class Files extends React.Component {
                 navigate('/err', {state: {err: e.status, errText: e.statusText}})
                 return
             })
+    }
+
+    filterFiles(name) {      
+        let filteredArr = this.state.files.filter(file => {
+            return file.name.includes(name.target.value) > 0            
+        })
+        this.setState({ filteredFiles: filteredArr, searchTerm: name.target.value })
     }
 
     render() {
@@ -43,12 +53,13 @@ class Files extends React.Component {
         return (
             <div>
                 <header className="header">
-                    <h1>{this.state.files.length} Files</h1>
+                    <h1>{this.state.filteredFiles.length} Files</h1>
+                    <input className="search" type="searchbox" placeholder="Search filenames" value={this.state.searchTerm} onChange={term => this.filterFiles(term)}/>
                 </header>
                 <div className="files">
                     {
-                        this.state.files[0]
-                        ? this.state.files.map(file => (
+                        this.state.filteredFiles[0]
+                        ? this.state.filteredFiles.map(file => (
                             <Link 
                                 className="files__item" key={file.name}
                                 to="/file"
