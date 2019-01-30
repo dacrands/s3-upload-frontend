@@ -28,6 +28,10 @@ class File extends Component {
     }
 
     componentDidMount() {
+        if(!this.props.location.state) {
+            navigate('/')
+            return
+        }
         const file = this.props.location.state.file
         const body = this.props.location.state.body
         const mainBody = this.props.location.state.body
