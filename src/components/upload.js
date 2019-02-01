@@ -31,7 +31,7 @@ class Upload extends React.Component {
         })
             .then(res => {
                 if (res.status !== 200) {
-                    throw (res)
+                    throw ({status: res.status, msg: res})
                 }
                 res.json()
             })
@@ -40,11 +40,18 @@ class Upload extends React.Component {
                 navigate(`/`)
                 return
             })
-            .catch(e => {
-                console.error(e)
-                this.setState({ isSubmitting: false })
-                navigate('/err', {state: {err: e.status, errText: e.statusText}})
-                return
+            .catch(({status, msg}) => {                
+                msg.json().then(err => {        
+                    this.setState({ isSubmitting: false })         
+                    alert(err.msg)                     
+                    return  
+                    // navigate('/err', {state: {err: status, errText: err.msg}})
+                }).catch(error => {
+                    console.log(error)
+                })
+                // this.setState({ isSubmitting: false })
+                // navigate('/err', {state: {err: e.status, errText: e.json().msg}})
+                // return
             })
     }
 

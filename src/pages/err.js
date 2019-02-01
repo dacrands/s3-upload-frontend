@@ -23,7 +23,8 @@ class Err extends React.Component {
         return (
             <Layout>
                 <header className="header">
-                    <h1>{this.state.err} {this.state.errText}</h1>
+                    <h1>{this.state.err} </h1>
+                    <h2>{this.state.errText}</h2>
                 </header>
                 <div className="content">
                 {

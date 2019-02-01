@@ -742,10 +742,9 @@ $%$%$%$%%$%$%$%$$%$% */
 
 .files {
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, 350px); */
+  grid-template-columns: repeat(auto-fill, 250px);
   /* grid-auto-rows: 150px; */
   /* grid-auto-flow: row dense;  */
-  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   justify-content: center; 
   margin-top: 2rem;
@@ -754,8 +753,7 @@ $%$%$%$%%$%$%$%$$%$% */
 .files__item {
   /* outline: 1px solid red; */
   border: 1px dotted black;
-  /* float: left; */
-  /* margin: 1rem; */
+
   padding: 1rem;
   position: relative;
   color: rgb(106, 106, 122);
@@ -788,7 +786,6 @@ $%$%$%$%%$%$%$%$$%$% */
 .form {
   /* outline: 1px solid red;   */
   margin-top: 2rem;
-
 }
 
 .form label {  
