@@ -8,12 +8,13 @@ import SEO from '../components/seo'
 class Logout extends React.Component {
 
     componentDidMount() {
+        logout()
         fetch('http://192.168.0.115:5000/logout', {
             credentials: 'include'
         })
             .then(res => res.json())
             .then(response => {
-                logout()
+                
                 return
             }).catch(e => console.error(e))
     }

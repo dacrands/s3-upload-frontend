@@ -152,14 +152,6 @@ class File extends Component {
                     <h1>{this.state.file}</h1>                   
                 </header>
                 <section className="box">
-                    {/* {
-                        this.state.body.length < 1
-                        ?  null
-                        :  <div className="box__item box__item--desc">                    
-                            <h3>Description</h3>                        
-                            <p>{this.state.body}</p>
-                        </div> 
-                    } */}
                     <div className="box__item box__item-desc">                    
                             <h3>Description</h3>    
                             <button onClick={() => {this.setState({ isEditing: !this.state.isEditing })}}

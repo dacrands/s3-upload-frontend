@@ -6,8 +6,9 @@ class Register extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: '',
-            passwordTwo: ''
+            email: '',
+            password1: '',
+            password2: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -21,7 +22,7 @@ class Register extends React.Component {
     }
 
     isValidPassword() {
-        if (this.state.password !== this.state.passwordTwo) {
+        if (this.state.password1 !== this.state.password2) {
             return false
         }
         return true
@@ -71,19 +72,26 @@ class Register extends React.Component {
                     <br />
                     <small>Must be between 8 and 20 characters</small>
                 </label>
-                <label htmlFor="password">
+                <label htmlFor="email">
+                    <span>Email</span>
+                    <br />
+                    <input type="email" name="email" id="email" value={this.state.email} onChange={this.handleChange} />
+                    <br />
+                    <small>This is only to confirm you exist, I won't send you anything unsolicited!</small>
+                </label>
+                <label htmlFor="password1">
                     Password
                     <br />
-                    <input type="password" name="password" id="password" value={this.state.password} onChange={this.handleChange} />
+                    <input type="password" name="password1" id="password1" value={this.state.password1} onChange={this.handleChange} />
                     <br />
                     <small>Sorry for repeating myself, but this also must be between 8 and 20 characters</small>
                 </label>
-                <label htmlFor="passwordTwo">
+                <label htmlFor="password2">
                     Re-enter Password
                     <br />
-                    <input type="password" name="passwordTwo" id="passwordTwo" value={this.state.passwordTwo} onChange={this.handleChange} />
+                    <input type="password" name="password2" id="password2" value={this.state.password2} onChange={this.handleChange} />                    
                 </label>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Register" />
             </form>
 
         )

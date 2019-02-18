@@ -7,6 +7,7 @@ class Upload extends React.Component {
         super(props);
         this.state = {
             text: '',
+            date: '',
             isSubmitting: false,
         }
         this.handleChange = this.handleChange.bind(this)
@@ -14,6 +15,9 @@ class Upload extends React.Component {
         this.fileInput = React.createRef()
     }
 
+    componentDidMount() {
+        this.setState({ date: new Date().toDateString() })
+    }
 
     handleChange(event) {
         let value = event.target.name;
@@ -21,7 +25,7 @@ class Upload extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
+        event.preventDefault();   
         const data = new FormData(event.target);
         this.setState({ isSubmitting: true })
         fetch('http://192.168.0.115:5000/files', {
@@ -49,9 +53,6 @@ class Upload extends React.Component {
                 }).catch(error => {
                     console.log(error)
                 })
-                // this.setState({ isSubmitting: false })
-                // navigate('/err', {state: {err: e.status, errText: e.json().msg}})
-                // return
             })
     }
 
@@ -64,6 +65,14 @@ class Upload extends React.Component {
         return (
 
             <form className="form" onSubmit={this.handleSubmit}>
+                    <input
+                        hidden
+                        type="text"
+                        name="date"
+                        id="date"
+                        value={this.state.date}
+                        onChange={this.handleChange}
+                        ref={this.fileDate} />
                 <label htmlFor="file">
                     File:
                     <br/>
@@ -83,9 +92,7 @@ class Upload extends React.Component {
                         rows="5" 
                         cols="30"
                         value={this.state.text} onChange={this.handleChange}
-                    />
-
-                    
+                    />                    
                 </label>
                 <input type="submit" value="Submit" />
             </form>
