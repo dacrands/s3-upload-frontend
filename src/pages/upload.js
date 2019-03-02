@@ -12,7 +12,7 @@ const UploadPage = () => (
       <h1>Upload a file</h1>      
     </header>
     <Upload />
-    <Link to="/">Go back to the homepage</Link>
+    <Link to="/">Go back</Link>
   </Layout>
 )
 

@@ -53,6 +53,7 @@ class Register extends React.Component {
                     alert(response.err)
                     return
                 }
+                alert('Thanks! Please verifiy your email within 10 minutes.')
                 navigate(`/login`)
                 return
             })
@@ -91,7 +92,7 @@ class Register extends React.Component {
                     <br />
                     <input type="password" name="password2" id="password2" value={this.state.password2} onChange={this.handleChange} />                    
                 </label>
-                <input type="submit" value="Register" />
+                <input className="btn" type="submit" value="Register" />
             </form>
 
         )

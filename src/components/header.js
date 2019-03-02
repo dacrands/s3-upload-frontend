@@ -34,9 +34,6 @@ const Header = ({ siteTitle }) => {
 
     <ul className="navbar__links">
       <li>
-        <Link to="/upload" activeStyle={{ textDecoration: 'underline' }}>Upload</Link>
-      </li>
-      <li>
         <Link to="/logout" activeStyle={{ textDecoration: 'underline' }}>Logout</Link>
       </li>
     </ul>

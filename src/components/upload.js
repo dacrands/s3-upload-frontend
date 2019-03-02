@@ -94,7 +94,7 @@ class Upload extends React.Component {
                         value={this.state.text} onChange={this.handleChange}
                     />                    
                 </label>
-                <input type="submit" value="Submit" />
+                <input className="btn" type="submit" value="Submit" />
             </form>
 
         )

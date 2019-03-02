@@ -54,7 +54,8 @@ class Files extends React.Component {
             <div>
                 <header className="header">
                     <h1>{this.state.filteredFiles.length} Files</h1>
-                    <input className="search" type="searchbox" placeholder="Search filenames" value={this.state.searchTerm} onChange={term => this.filterFiles(term)}/>
+                    <input className="search" type="searchbox" placeholder="Search files" value={this.state.searchTerm} onChange={term => this.filterFiles(term)}/>
+                    <Link className="btn btn--big" to="/upload" style={{float: "right"}}>Upload</Link>
                 </header>
                 <div className="files">
                     {
