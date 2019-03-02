@@ -1,6 +1,5 @@
 import React from 'react'
 import { navigate } from 'gatsby'
-import { setUser } from '../utils/auth'
 
 class Upload extends React.Component {
     constructor(props) {

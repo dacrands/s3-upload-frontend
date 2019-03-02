@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link, navigate } from 'gatsby'
+import { Link} from 'gatsby'
 import { logout } from '../utils/auth'
 
-import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 class Logout extends React.Component {
