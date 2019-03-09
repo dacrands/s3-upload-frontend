@@ -9,10 +9,10 @@ const UploadPage = () => (
   <Layout>
     <SEO title="Page two" />
     <header className="header">
-      <h1>Upload a file</h1>      
+      <h1>Upload</h1> 
+      <h3 style={{fontWeight: 'normal'}}>Supports jpg, png, gif, docx, xlsx, pdf</h3>     
     </header>
     <Upload />
-    <Link to="/">Go back</Link>
   </Layout>
 )
 
