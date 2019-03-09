@@ -1,5 +1,8 @@
 import React from 'react'
 import { navigate } from 'gatsby'
+import { Link } from '@reach/router';
+
+const MAX_TEXT_LEN = 130
 
 class Upload extends React.Component {
     constructor(props) {
@@ -24,10 +27,15 @@ class Upload extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();   
+        event.preventDefault(); 
+        // Evetually I will disable the button, but for now alert and return
+        if (this.state.text.length > 130) {
+            alert('Your text description is too long. Please shorten it.')
+            return
+        }          
         const data = new FormData(event.target);
         this.setState({ isSubmitting: true })
-        fetch('http://192.168.0.115:5000/files', {
+        fetch('http://localhost:8000/files', {
             method: "POST",
             body: data,
             credentials: 'include',
@@ -48,7 +56,6 @@ class Upload extends React.Component {
                     this.setState({ isSubmitting: false })         
                     alert(err.msg)                     
                     return  
-                    // navigate('/err', {state: {err: status, errText: err.msg}})
                 }).catch(error => {
                     console.log(error)
                 })
@@ -62,7 +69,7 @@ class Upload extends React.Component {
             </div>
         }
         return (
-
+            <div>
             <form className="form" onSubmit={this.handleSubmit}>
                     <input
                         hidden
@@ -73,16 +80,17 @@ class Upload extends React.Component {
                         onChange={this.handleChange}
                         ref={this.fileDate} />
                 <label htmlFor="file">
-                    File:
+                    File:                    
                     <br/>
                     <input
                         type="file"
                         name="file"
                         id="file"
                         ref={this.fileInput} />
+                    
                 </label>
                 <label htmlFor="text">
-                    File Info:
+                    File Info:                                    
                 <br />
                     <textarea 
                         type="text" 
@@ -92,10 +100,20 @@ class Upload extends React.Component {
                         cols="30"
                         value={this.state.text} onChange={this.handleChange}
                     />                    
+                <br/>
+                    {/* 
+                        QD solution for now....sorry about that, couldn't resist. 
+                        Shows avail chars in green, changes value to 'too long,' turns red 
+                        when exceeds desc text limit.
+                    */}
+                    <small style={this.state.text.length < (MAX_TEXT_LEN + 1) ? { color: 'green' } : {color: 'red'}}>
+                        { this.state.text.length < (MAX_TEXT_LEN + 1)  ? `Characters available: ${MAX_TEXT_LEN  - (this.state.text.length)}` : 'Please shorten your description.'}
+                    </small>
                 </label>
                 <input className="btn" type="submit" value="Submit" />
             </form>
-
+            <Link to="/">Back to files</Link>
+            </div>
         )
     }
 }
