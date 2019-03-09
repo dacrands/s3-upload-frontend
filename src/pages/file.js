@@ -58,7 +58,7 @@ class File extends Component {
     }
 
     editFile(data) {
-        fetch(`http://192.168.0.115:5000/files/${this.state.id}/edit`, {
+        fetch(`http://localhost:8000/files/${this.state.id}/edit`, {
             credentials: 'include',
             body: data,
             method: 'PATCH',
@@ -88,7 +88,7 @@ class File extends Component {
         }
         
         this.setState({ isDeleting: true })
-        fetch(`http://192.168.0.115:5000/files/${this.state.id}/delete`, {
+        fetch(`http://localhost:8000/files/${this.state.id}/delete`, {
             credentials: 'include',
             method: 'DELETE',
         })
@@ -111,7 +111,7 @@ class File extends Component {
     }
 
     getFile(){
-        fetch(`http://192.168.0.115:5000/files/${this.state.id}`, {
+        fetch(`http://localhost:8000/files/${this.state.id}`, {
             credentials: 'include'
         })
         .then(res => {
@@ -154,7 +154,7 @@ class File extends Component {
                 <section className="box">
                     <div className="box__item box__item-desc">                    
                             <h3>Description</h3>    
-                            <button onClick={() => {this.setState({ isEditing: !this.state.isEditing })}}
+                            <button aria-label="Edit file info" onClick={() => {this.setState({ isEditing: !this.state.isEditing })}}
                             >
                                 {this.state.isEditing ? "\u2715" : "\u270E" }
                             </button>   
@@ -170,7 +170,7 @@ class File extends Component {
                                         value={this.state.body}
                                         onChange={this.handleChange}
                                    />
-                                    <input type="submit" value="Submit"/>
+                                    <input className="btn" type="submit" value="Submit"/>
                                 </form>                                                                
                             }                                             
                         </div> 
@@ -197,7 +197,7 @@ class File extends Component {
                     </div>
 
                 </section>
-                <Link to="/">Go back to the homepage</Link>
+                <Link to="/">Back to files</Link>
             </Layout>
         )
     }
