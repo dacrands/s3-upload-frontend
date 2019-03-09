@@ -729,11 +729,9 @@ $%$%$%$%%$%$%$%$$%$% */
   color: white;
 }
 
-.box__item-desc input[type="submit"] {
+.box__item-desc .btn {
   cursor: pointer;
   display: block;
-  background: rgb(39, 39, 41);
-  color: white;
 }
 
 .box__item-desc p {

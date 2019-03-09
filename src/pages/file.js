@@ -4,6 +4,8 @@ import { Link, navigate } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
+const MAX_TEXT_LEN = 130
+
 class File extends Component {
 
     constructor(props) {
@@ -28,7 +30,7 @@ class File extends Component {
     }
 
     componentDidMount() {
-        if(!this.props.location.state) {
+        if (!this.props.location.state) {
             navigate('/')
             return
         }
@@ -38,12 +40,12 @@ class File extends Component {
         const id = this.props.location.state.id
         this.setState({ file, body, id, mainBody, didUpdate: false })
     }
-    
+
     componentDidUpdate() {
         if (!this.state.didUpdate) {
             this.getFile()
             this.setState({ didUpdate: true })
-        }        
+        }
     }
 
     handleChange(event) {
@@ -53,6 +55,10 @@ class File extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (this.state.body.length > 130) {
+            alert('Your text description is too long. Please shorten it.')
+            return
+        }        
         const data = new FormData(event.target);
         this.editFile(data);
     }
@@ -63,134 +69,146 @@ class File extends Component {
             body: data,
             method: 'PATCH',
         })
-        .then(res => {
-            if(res.status !== 200) {
-                throw(res)
-            }
-            return res.json()
-        })
-        .then(response => {  
-            this.getFile()   
-            this.setState({ isEditing: false })     
-            return
-        })
-        .catch(e => {
-            alert(e)
-            this.setState({ isEditing: false })
-            return
-        })
+            .then(res => {
+                if (res.status !== 200) {
+                    throw (res)
+                }
+                return res.json()
+            })
+            .then(response => {
+                this.getFile()
+                this.setState({ isEditing: false })
+                return
+            })
+            .catch(e => {
+                e.json().then(err => {
+                    alert(err.msg)
+                    this.setState({ isEditing: false })
+                    return
+                })
+                .catch(error => console.error(error))              
+            })
     }
 
     deleteFile() {
         const confirmed = window.confirm(`You are about to delete ${this.state.file}. This action can not be undone.`)
-        if(!confirmed) {
+        if (!confirmed) {
             return
         }
-        
+
         this.setState({ isDeleting: true })
         fetch(`http://localhost:8000/files/${this.state.id}/delete`, {
             credentials: 'include',
             method: 'DELETE',
         })
-        .then(res => {
-            if(res.status !== 200) {
-                throw(res)
-            }
-            return res.json()
-        })
-        .then(response => {
-            this.setState({ isDeleting: false })
-            navigate('/')            
-            return
-        })
-        .catch(e => {
-            alert(e)
-            this.setState({ isDeleting: false })
-            return
-        })
+            .then(res => {
+                if (res.status !== 200) {
+                    throw (res)
+                }
+                return res.json()
+            })
+            .then(response => {
+                this.setState({ isDeleting: false })
+                navigate('/')
+                return
+            })
+            .catch(e => {
+                alert(e)
+                this.setState({ isDeleting: false })
+                return
+            })
     }
 
-    getFile(){
+    getFile() {
         fetch(`http://localhost:8000/files/${this.state.id}`, {
             credentials: 'include'
         })
-        .then(res => {
-            if(res.status !== 200) {
-                throw(res)
-            }
-            return res.json()
-        })
-        .then(response => {
-            this.setState({
-                date: response.file.date,
-                size: response.file.size,
-                url: response.file.url,
-                body: response.file.body,
-                mainBody: response.file.body,
+            .then(res => {
+                if (res.status !== 200) {
+                    throw (res)
+                }
+                return res.json()
             })
-            return
-        })
-        .catch(e => {
-            alert(e)
-            return
-        })
+            .then(response => {
+                this.setState({
+                    date: response.file.date,
+                    size: response.file.size,
+                    url: response.file.url,
+                    body: response.file.body,
+                    mainBody: response.file.body,
+                })
+                return
+            })
+            .catch(e => {
+                console.log(typeof e)
+                return
+            })
     }
 
 
     render() {
-        if(this.state.isDeleting) {
+        if (this.state.isDeleting) {
             return <Layout>
                 <header className="header">
                     <h1>Deleting file...</h1>
-                </header>                
+                </header>
             </Layout>
         }
         return (
             <Layout>
-                <SEO title="Page two" />
+                <SEO title={this.state.file} />
                 <header className="header">
-                    <h1>{this.state.file}</h1>                   
+                    <h1>{this.state.file}</h1>
                 </header>
                 <section className="box">
-                    <div className="box__item box__item-desc">                    
-                            <h3>Description</h3>    
-                            <button aria-label="Edit file info" onClick={() => {this.setState({ isEditing: !this.state.isEditing })}}
-                            >
-                                {this.state.isEditing ? "\u2715" : "\u270E" }
-                            </button>   
-                            {
-                                !this.state.isEditing
-                                ? <p>{this.state.mainBody}</p>                            
-                                : <form onSubmit={this.handleSubmit}>
-                                    <textarea 
-                                        cols="40" 
-                                        rows="5" 
-                                        type="text" 
-                                        name="body"
-                                        value={this.state.body}
-                                        onChange={this.handleChange}
-                                   />
-                                    <input className="btn" type="submit" value="Submit"/>
-                                </form>                                                                
-                            }                                             
-                        </div> 
-                                                          
                     <div className="box__item">
-                        <h3>Upload Date</h3>                        
-                        <p>{this.state.date}</p>
-                    </div>                                        
-                    <div className="box__item">
-                        <h3>Size</h3>                        
-                        <p>{this.state.size} bytes</p>
-                    </div>
-                    <div className="box__item">
-                        <h3>Download Link</h3>                        
+                        <h3>Download Link</h3>
                         <a href={this.state.url}>
                             Click Here to Download
                         </a>
                     </div>
+                    <div className="box__item">
+                        <h3>Upload Date</h3>
+                        <p>{this.state.date}</p>
+                    </div>
+                    <div className="box__item">
+                        <h3>Size</h3>
+                        <p>{this.state.size} bytes</p>
+                    </div>
+
+                    <div className="box__item box__item-desc">
+                        <h3>Description</h3>
+                        <button aria-label="Edit file info" onClick={() => { this.setState({ isEditing: !this.state.isEditing }) }}
+                        >
+                            {this.state.isEditing ? "\u2715" : "\u270E"}
+                        </button>
+                        {
+                            !this.state.isEditing
+                                ? <p>{this.state.mainBody}</p>
+                                : <form onSubmit={this.handleSubmit}>
+                                    <textarea
+                                        cols="40"
+                                        rows="5"
+                                        type="text"
+                                        name="body"
+                                        value={this.state.body}
+                                        onChange={this.handleChange}
+                                    />
+                                    <p>
+                                        <small style={this.state.body.length < (MAX_TEXT_LEN + 1) ? { color: 'green' } : { color: 'red' }}>
+                                            {this.state.body.length < (MAX_TEXT_LEN + 1) ? `Characters available: ${MAX_TEXT_LEN - (this.state.body.length)}` : 'Please shorten your description.'}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <input className="btn" type="submit" value="Submit" />
+                                    </p>
+                                </form>
+                        }
+                    </div>
+
+
                     <div className="box__item box__item--warning">
-                        <h3>Delete</h3>                        
+                        <h3>Delete</h3>
                         <button onClick={this.deleteFile}>
                             Click Here to Delete
                         </button>
