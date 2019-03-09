@@ -649,6 +649,7 @@ $%$%$%$%%$%$%$%$$%$% */
   text-transform: uppercase;
   font-size: 14px;
   transition: all 200ms ease;
+  letter-spacing: 1px;
 }
 
 .btn--big {

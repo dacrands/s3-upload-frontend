@@ -40,7 +40,7 @@ class Register extends React.Component {
             return
         }
         const data = new FormData(event.target);
-        fetch('http://192.168.0.115:5000/register', {
+        fetch('http://localhost:8000/register', {
             method: 'POST',
             body: data,
             credentials: 'include',

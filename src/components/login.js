@@ -22,7 +22,7 @@ class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch('http://192.168.0.115:5000/login', {
+        fetch('http://localhost:8000/login', {
             method: 'POST',
             body: data,
             credentials: 'include',

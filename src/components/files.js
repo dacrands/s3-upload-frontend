@@ -16,7 +16,7 @@ class Files extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading:true })
-        fetch('http://192.168.0.115:5000/files', {
+        fetch('http://localhost:8000/files', {
             credentials: 'include'
         })
             .then(res => {
