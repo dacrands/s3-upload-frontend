@@ -29,7 +29,7 @@ class Err extends React.Component {
                 {
                     this.state.err === 403 
                     ? <p>You need to be logged in to do that:  <Link to="/login">login here</Link></p>
-                    : <p>{this.state.errTex}t <Link to="/">Go back to the homepage</Link></p>
+                    : <p>{this.state.errTex} <Link to="/">Go back to the homepage</Link></p>
                 }
                 </div>                
             </Layout>

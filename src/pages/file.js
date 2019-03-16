@@ -64,7 +64,7 @@ class File extends Component {
     }
 
     editFile(data) {
-        fetch(`http://localhost:8000/files/${this.state.id}/edit`, {
+        fetch(`https://api.files.crandall.dev/files/${this.state.id}/edit`, {
             credentials: 'include',
             body: data,
             method: 'PATCH',
@@ -80,7 +80,7 @@ class File extends Component {
                 this.setState({ isEditing: false })
                 return
             })
-            .catch(e => {
+            .catch(e => {                
                 e.json().then(err => {
                     alert(err.msg)
                     this.setState({ isEditing: false })
@@ -97,7 +97,7 @@ class File extends Component {
         }
 
         this.setState({ isDeleting: true })
-        fetch(`http://localhost:8000/files/${this.state.id}/delete`, {
+        fetch(`https://api.files.crandall.dev/files/${this.state.id}/delete`, {
             credentials: 'include',
             method: 'DELETE',
         })
@@ -120,7 +120,7 @@ class File extends Component {
     }
 
     getFile() {
-        fetch(`http://localhost:8000/files/${this.state.id}`, {
+        fetch(`http://api.files.crandall.dev/files/${this.state.id}`, {
             credentials: 'include'
         })
             .then(res => {

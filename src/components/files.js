@@ -16,7 +16,7 @@ class Files extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading:true })
-        fetch('http://localhost:8000/files', {
+        fetch('https://api.files.crandall.dev/files', {
             credentials: 'include'
         })
             .then(res => {

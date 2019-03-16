@@ -23,7 +23,7 @@ class Verify extends Component {
   }
 
   verifyToken() {
-    fetch(`http://192.168.0.115:5000/verify?token=${this.state.token}`)
+    fetch(`https://api.files.crandall.dev/verify?token=${this.state.token}`)
       .then(res => {
         return res.json()
       })
@@ -43,8 +43,7 @@ class Verify extends Component {
         <header className="header">
           <h1>Verify</h1>
         </header>
-        <p>Verifying account</p>
-        <Link to="/">Go back to the homepage</Link>
+        <p>Verifying account</p>        
       </Layout>
     )
   }

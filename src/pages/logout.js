@@ -8,7 +8,7 @@ class Logout extends React.Component {
 
     componentDidMount() {
         logout()
-        fetch('http://localhost:8000/logout', {
+        fetch('api.files.crandall.dev/logout', {
             credentials: 'include'
         })
             .then(res => res.json())
