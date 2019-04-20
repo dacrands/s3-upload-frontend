@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 
 import Layout from '../components/layout'
 
@@ -14,6 +14,12 @@ class Err extends React.Component {
     }
     
     componentDidMount() {
+        // check to see if location has state (i.e., an err)
+        // if note, redirect to index
+        if( !this.props.location.state ) {
+            navigate('/')     
+            return        
+        }
         const err = this.props.location.state.err
         const errText = this.props.location.state.errText
         this.setState({ err, errText })
