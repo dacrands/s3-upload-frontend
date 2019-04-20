@@ -120,7 +120,7 @@ class File extends Component {
     }
 
     getFile() {
-        fetch(`http://api.files.crandall.dev/files/${this.state.id}`, {
+        fetch(`https://api.files.crandall.dev/files/${this.state.id}`, {
             credentials: 'include'
         })
             .then(res => {
@@ -162,9 +162,9 @@ class File extends Component {
                 </header>
                 <section className="box">
                     <div className="box__item">
-                        <h3>Download Link</h3>
-                        <a href={this.state.url}>
-                            Click Here to Download
+                        <h3>Download File</h3>
+                        <a className="btn" href={this.state.url}>
+                            Download
                         </a>
                     </div>
                     <div className="box__item">
@@ -206,11 +206,10 @@ class File extends Component {
                         }
                     </div>
 
-
                     <div className="box__item box__item--warning">
                         <h3>Delete</h3>
-                        <button onClick={this.deleteFile}>
-                            Click Here to Delete
+                        <button className="btn btn--warning" onClick={this.deleteFile}>
+                            Delete
                         </button>
                     </div>
 
