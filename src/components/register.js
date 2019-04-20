@@ -40,7 +40,7 @@ class Register extends React.Component {
             return
         }
         const data = new FormData(event.target);
-        fetch('http://api.files.crandall.dev/register', {
+        fetch('https://api.files.crandall.dev/register', {
             method: 'POST',
             body: data,
             credentials: 'include',
