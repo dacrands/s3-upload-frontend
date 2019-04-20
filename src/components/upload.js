@@ -35,7 +35,7 @@ class Upload extends React.Component {
         }          
         const data = new FormData(event.target);
         this.setState({ isSubmitting: true })
-        fetch('http://api.files.crandall.dev/files', {
+        fetch('https://api.files.crandall.dev/files', {
             method: "POST",
             body: data,
             credentials: 'include',
