@@ -7,7 +7,7 @@ import Upload from '../components/upload';
 
 const UploadPage = () => (
   <Layout>
-    <SEO title="Page two" />
+    <SEO title="Upload" />
     <header className="header">
       <h1>Upload</h1> 
       <h3 style={{fontWeight: 'normal'}}>Supports jpg, png, gif, docx, xlsx, pdf</h3>     
