@@ -650,6 +650,11 @@ $%$%$%$%%$%$%$%$$%$% */
   font-size: 14px;
   transition: all 200ms ease;
   letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1b3aaa;
 }
 
 .btn--big {
@@ -657,8 +662,13 @@ $%$%$%$%%$%$%$%$$%$% */
   font-size: 16px;
 }
 
-.btn:hover {
-  background: #1b3aaa;
+.btn--warning {
+  background: red;
+}
+
+
+.btn--warning:hover {
+  background: red;
 }
 
 .navbar {
@@ -743,16 +753,6 @@ $%$%$%$%%$%$%$%$$%$% */
   color: red;
 }
 
-.box__item--warning button {
-  /* background: red; */
-  /* color: #f9f9f9; */
-  cursor: pointer;
-  padding: 0;
-  color: red;
-  background: none;
-  border: none;
-  text-decoration: underline;
-}
 
 .files {
   /* display: grid;
