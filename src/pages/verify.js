@@ -31,7 +31,13 @@ class Verify extends Component {
         alert('Account verified. Please login.')
         navigate(`/login`)
       })
-      .catch(e => console.error(e))
+      .catch(e => {
+        // Trying to resolve https redirect err from flask
+        // Otherwise redirect to login and hop
+        console.log(e);
+        alert('Thanks! Please attempt to log in')
+        navigate(`/login`)
+      })
   }
 
 
