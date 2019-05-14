@@ -1,3 +1,10 @@
+/*
+*  FULL DISCLOSURE
+*
+*  I (David Crandall) did not write this.
+*  This is courtesy of the great people at https://www.gatsbyjs.org/
+*
+*/
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -620,228 +627,15 @@ pre tt:after {
   }
 }
 
-/* $%$%$%$%%$%$%$%$$%$%
-        ME
-$%$%$%$%%$%$%$%$$%$% */
-
-.header { 
-  padding-top: 2rem;  
-  /* margin: 1rem; */
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgb(39, 39, 41);
-}
-.footer {
-  margin-top: 2rem;
-  padding: 0.5rem 1rem;
-  font-size: .8rem;
-  /* display: flex;
-  justify-content: space-between; */
-}
-
-.btn {
-  background: #224adb;
-  color: #ffffff;
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 3px;
-  text-transform: uppercase;
-  font-size: 14px;
-  transition: all 200ms ease;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #1b3aaa;
-}
-
-.btn--big {
-  padding: 0.5rem 1rem;
-  font-size: 16px;
-}
-
-.btn--warning {
-  background: red;
-}
 
 
-.btn--warning:hover {
-  background: rgb(148, 4, 4);
-}
-
-.navbar {
-  background: rgb(39, 39, 41);
-  padding: 0.5rem;  
-  /* outline: 1px solid red;   */
-  display: flex;
-  justify-content: space-between;
-}
-
-.navbar h2 {
-  /* outline: 1px solid red; */
-  margin: 0;
-}
-
-.navbar a {
-  color: #f9f9f9;
-  text-decoration: none;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-.navbar__links {
-  
-  /* outline: 1px solid orange;   */
-  display: flex;
-  list-style: none;
-  margin: 0;
-}
-
-.navbar__links li {
-  margin: 0;  
-}
-
-.navbar__links a {
-  margin: 0;  
-  margin-right: 1rem;
-  display: inline-block;
-}
 
 
-.box {
-  display: flex;
-  flex-flow: wrap;
-}
-
-.box__item {
-  margin: 1rem;
-  border: 1px dotted rgb(39, 39, 41);
-  padding: 1em;
-  min-width: 200px;
-}
-
-.box__item-desc {
-  position: relative;
-}
-
-.box__item-desc button {
-  /* display: inline; */
-  /* float: right; */
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: rgb(39, 39, 41);
-  color: white;
-}
-
-.box__item-desc .btn {
-  cursor: pointer;
-  display: block;
-}
-
-.box__item-desc p {
-  max-width: 400px;
-}
-
-.box__item--warning {
-  border: 1px dotted red;
-  color: red;
-}
 
 
-.files {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, 250px); */
-  /* grid-auto-rows: 150px; */
-  /* grid-auto-flow: row dense;  */
-  /* grid-gap: 1rem;
-  justify-content: center; 
-  margin-top: 2rem; */
-  display: flex;
-  flex-flow: wrap;
-}
-
-.files__item {
-  /* outline: 1px solid red; */
-  border: 1px dotted black;
-  display: block;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
-  max-width: 400px;
-  /* height: min-content;   */
-  /* float: left; */
-  padding: 1rem;
-  position: relative;
-  color: rgb(106, 106, 122);
-  transition: all 200ms ease;
-  /* height: min-content; */
-}
-
-.files__item {
-  text-decoration: none;
-}
-
-.files__item:hover {
-  color: blue;  
-}
-
-.files__item:hover h3 {
-  text-decoration: underline;
-}
 
 
-.files__item::after {
-  position: absolute;
-  content: "";
-  border: 1px solid black;
-  left: 0;  
-  right: 0;
-  bottom: -1px;
-}
-
-.form {
-  /* outline: 1px solid red;   */
-  margin-top: 2rem;
-}
-
-.form label {  
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.form input[type="submit"] {
-  cursor: pointer;
-}
 
 
-.form small {
-  color: #959d9e;
-}
 
-.form textarea {
-  border: 1px dotted rgb(39, 39, 41);;
-}
 
-.search {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border: none;
-  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */  
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  border: 2px solid #959d9e;
-}
-
-.search:focus {
-  outline: none;
-  border: 2px solid #224adb;
-  /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
-}
-
-.search:focus::placeholder {
-  color: #224adb;
-}

@@ -1,0 +1,22 @@
+.form {
+    /* outline: 1px solid red;   */
+    margin-top: 2rem;
+  }
+  
+  .form label {  
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .form input[type="submit"] {
+    cursor: pointer;
+  }
+  
+  
+  .form small {
+    color: #959d9e;
+  }
+  
+  .form textarea {
+    border: 1px dotted rgb(39, 39, 41);;
+  }
