@@ -4,7 +4,7 @@ import { Link, navigate } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const MAX_TEXT_LEN = 130
+const MAX_BODY_LEN = 130
 
 class File extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class File extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    if (this.state.body.length > 130) {
+    if (this.state.body.length > MAX_BODY_LEN) {
       alert('Your text description is too long. Please shorten it.')
       return
     }
@@ -178,7 +178,7 @@ class File extends Component {
           </div>
           <div className="box__item">
             <h3>Size</h3>
-            <p>{this.state.size} bytes</p>
+            <p>{Number.parseFloat(this.state.size / 1000).toFixed(2)} Kb</p>
           </div>
 
           <div className="box__item box__item-desc">
@@ -206,13 +206,13 @@ class File extends Component {
                 <p>
                   <small
                     style={
-                      this.state.body.length < MAX_TEXT_LEN + 1
+                      this.state.body.length < MAX_BODY_LEN + 1
                         ? { color: 'green' }
                         : { color: 'red' }
                     }
                   >
-                    {this.state.body.length < MAX_TEXT_LEN + 1
-                      ? `Characters available: ${MAX_TEXT_LEN -
+                    {this.state.body.length < MAX_BODY_LEN + 1
+                      ? `Characters available: ${MAX_BODY_LEN -
                           this.state.body.length}`
                       : 'Please shorten your description.'}
                   </small>
