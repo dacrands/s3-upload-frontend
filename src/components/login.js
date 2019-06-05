@@ -33,7 +33,6 @@ class Login extends React.Component {
       .then(response => {
         if (response.err) {
           alert(response.err)
-          this.setState({ username: '', password: '' })
           return
         }
         setUser(response.username)
