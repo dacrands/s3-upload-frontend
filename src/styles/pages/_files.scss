@@ -1,27 +1,23 @@
-.files {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 440px);        
+.files {    
+    display: flex;
     grid-gap: 1rem;
     justify-content: center; 
     margin-top: 2rem;
     // display: flex;
-    // flex-flow: wrap;
+    flex-flow: wrap;
   }
   
   .files__item {
     /* outline: 1px solid red; */
+    flex: 50%;
     border: 1px dotted black;
     display: block;
-    margin-bottom: 1rem;
-    // margin-right: 1rem;
-    // max-width: 400px;
-    /* height: min-content;   */
-    /* float: left; */
+    margin: 1rem;
+    max-width: 400px;
     padding: 1rem;
     position: relative;
     color: rgb(106, 106, 122);
-    transition: all 200ms ease;
-    /* height: min-content; */
+    transition: all 200ms ease;    
   }
   
   .files__item {
