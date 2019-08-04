@@ -5,7 +5,7 @@ import React from 'react'
 import { getUser } from '../utils/auth'
 
 const Header = ({ siteTitle }) => {
-  if (getUser() === 'no one' || getUser() === '') {
+  if (!getUser()) {
     return (
       <nav className="navbar">
         <Link to="/" activeStyle={{ textDecoration: 'underline' }}>
