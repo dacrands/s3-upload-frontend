@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Just Files`,
+    description: `A file hosting application that is all about accessibility`,
+    author: `David Crandall`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -20,12 +20,12 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `David Crandall File Hosting`,
-        short_name: `JustFiles`,
+        short_name: `Just Files`,
         start_url: `/`,
         background_color: `#042291`,
         theme_color: `#042291`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/gatsby-icon.png`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
