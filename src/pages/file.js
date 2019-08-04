@@ -17,9 +17,10 @@ class File extends Component {
       url: '',
       id: -1,
       size: 0,
-      didUpdate: false,
+      isLoading: true,
       isDeleting: false,
       isEditing: false,
+      didUpdate: false,
     }
     this.getFile = this.getFile.bind(this)
     this.deleteFile = this.deleteFile.bind(this)
@@ -33,6 +34,7 @@ class File extends Component {
       navigate('/')
       return
     }
+    this.setState({ isLoading: false})
     const file = this.props.location.state.file
     const body = this.props.location.state.body
     const mainBody = this.props.location.state.body
@@ -74,7 +76,7 @@ class File extends Component {
         }
         return res.json()
       })
-      .then(response => {
+      .then(response => { 
         this.getFile()
         this.setState({ isEditing: false })
         return
@@ -150,6 +152,15 @@ class File extends Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <Layout>
+          <header className="header">
+            <h1>Loading file...</h1>
+          </header>
+        </Layout>
+      )
+    }
     if (this.state.isDeleting) {
       return (
         <Layout>
@@ -178,7 +189,7 @@ class File extends Component {
           </div>
           <div className="box__item">
             <h3>Size</h3>
-            <p>{Number.parseFloat(this.state.size / 1000).toFixed(2)} Kb</p>
+            <p>{Number.parseFloat(this.state.size / 1000).toFixed(2)} KB</p>
           </div>
 
           <div className="box__item box__item-desc">
