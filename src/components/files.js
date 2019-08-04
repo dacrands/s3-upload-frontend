@@ -9,6 +9,9 @@ class Files extends React.Component {
       filteredFiles: [],
       searchTerm: '',
       isLoading: true,
+      fetchErr: false,
+      errStatus: null,
+      errMsg: null,
     }
     this.filterFiles = this.filterFiles.bind(this)
   }
@@ -21,7 +24,7 @@ class Files extends React.Component {
       .then(res => {
         if (res.status !== 200) {
           throw res
-        }
+        }        
         return res.json()
       })
       .then(response => {
@@ -34,8 +37,12 @@ class Files extends React.Component {
         return
       })
       .catch(e => {
+        this.setState({ isLoading: false, fetchErr: true })
         console.error(e.text)
-        navigate('/err', { state: { err: e.status, errText: e.statusText } })
+        this.setState({
+          errStatus: e.status,
+          errMsg: e.statusText,
+        })        
         return
       })
   }
@@ -52,6 +59,14 @@ class Files extends React.Component {
       return (
         <header className="header">
           <h1>Loading...</h1>
+        </header>
+      )
+    }
+    if (this.state.fetchErr) {
+      return (
+        <header className="header">          
+          <h1>{this.state.errStatus}</h1>
+          <p>{this.state.errMsg}</p>
         </header>
       )
     }
