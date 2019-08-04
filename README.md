@@ -2,17 +2,70 @@
 
 A file-hosting application that emphasizes simplicity and accessibility. 
 
-![Just files landing](https://i.imgur.com/erarxmd.png)
+![Just files home page](https://i.imgur.com/Jk1ULgo.jpg)
 
-## Description
-This is the [Gatsby](https://www.gatsbyjs.org/) front-end for a file-hosting application I am developing. Partially inspired by the [Bloomberg](https://bloomberg.com) site, the UI strives to emphasize simplicity and accessibility. Google, Dropbox, etc. all offer excellent file-hosting services, but they don't offer true simplicity. Sometimes you just want a simple online-folder to hold the files you use most often, or least often, without having to navigate through folders. Additionally, the complexity of applications such as Google Drive may lead to accessibility issues for certain users, such as those with limited computer skills. 
+## Getting Started
 
-### How did you emphasize accessibility?
-The UI is completely tabbable by design. In fact, I somethimes prefer navigating the application using entirely the keyboard. `focus` is maintained on all actionable elements and `aria-labels` are used on buttons and inputs with non-text values (e.g., 	
-&#9998;, 	&#10005;). The black and white color theme provides excellent color contrast, and the colors <strong style="color: #224adb">blue</strong> and <strong style="color: red;">red</strong> are used to indicate action.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Why Gatsby?
-I love using Gatsby because I love React and free hosting. 
+### Prerequisites
+This application requires a running local or production version of the web API it was built around. Here is the code for the API:
+
+- [Just Files Web API GitHub Repo](https://github.com/dacrands/s3-upload-backend)
+
+
+You will also need Node and npm downloaded to support this application. 
+
+- [NodeJS](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
+
+
+
+
+### Installing
+
+Intall your packages  
+
+```bash
+$ npm i
+```
+
+## Serve the App
+
+
+### Development
+```bash
+$ gatsby develop
+```
+
+Visit your site at *http://localhost:8000*
+
+### Production
+Build your site:
+
+```bash
+$ gatsby build
+```
+
+Serve your production build:
+```bash
+$ gatsby server
+```
+
+## Deployment
+
+This is a static site and can be hosted on many services. Here are two options I really enjoy using:
+
+- [Netlify](https://www.netlify.com)
+- [GitHub Pages](https://pages.github.com/)
+
+
+## Built With
+
+* [Gatsby JS](https://www.gatsbyjs.org/) - Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps
+
+* [Sass](https://sass-lang.com/) - Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
 
 
 ## Author
