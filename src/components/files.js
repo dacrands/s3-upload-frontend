@@ -1,5 +1,5 @@
 import React from 'react'
-import { navigate, Link } from 'gatsby'
+import { Link } from 'gatsby'
 
 class Files extends React.Component {
   constructor(props) {
