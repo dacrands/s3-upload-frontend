@@ -102,8 +102,8 @@ class Files extends React.Component {
                     id: file.id,
                   }}
                 >
-                  <h3>{file.name}</h3>
-                  <p>{file.body}</p>
+                  <h3 className="files__item-title">{file.name}</h3>
+                  <p className="files__item-body">{file.body}</p>
                 </Link>
               ))
             : null}
