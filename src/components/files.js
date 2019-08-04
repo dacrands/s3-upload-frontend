@@ -89,7 +89,7 @@ class Files extends React.Component {
             Upload
           </Link>
         </header>
-        <div className="files">
+        <div className="grid-wrap">
           {this.state.filteredFiles[0]
             ? this.state.filteredFiles.map(file => (
                 <Link
