@@ -31,7 +31,7 @@ class File extends Component {
 
   componentDidMount() {
     if (!this.props.location.state) {
-      navigate('/')
+      // TO DO: check for query param `id`
       return
     }
     this.setState({ isLoading: false})
@@ -146,12 +146,22 @@ class File extends Component {
         return
       })
       .catch(e => {
-        console.log(typeof e)
+        alert(e)
         return
       })
   }
 
   render() {
+    if (this.state.id === -1) {
+      return (
+        <Layout>
+          <header className="header">
+            <h1>No file selected</h1>
+            <Link to="/">Return to Files</Link>
+          </header>
+        </Layout>
+      )
+    }
     if (this.state.isLoading) {
       return (
         <Layout>
