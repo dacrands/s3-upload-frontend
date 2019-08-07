@@ -26,7 +26,7 @@ class Files extends React.Component {
       .then(res => {
         if (res.status !== 200) {
           throw res
-        }        
+        }
         return res.json()
       })
       .then(response => {
@@ -44,7 +44,7 @@ class Files extends React.Component {
         this.setState({
           errStatus: e.status,
           errMsg: e.statusText,
-        })        
+        })
         return
       })
   }
@@ -66,7 +66,7 @@ class Files extends React.Component {
     }
     if (this.state.fetchErr) {
       return (
-        <header className="header">          
+        <header className="header">
           <h1>{this.state.errStatus}</h1>
           <p>{this.state.errMsg}</p>
         </header>

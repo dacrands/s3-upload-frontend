@@ -4,7 +4,7 @@ import { Link, navigate } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-import { BASE_URL } from "../utils/fetch"
+import { BASE_URL } from '../utils/fetch'
 
 const MAX_BODY_LEN = 130
 
@@ -36,7 +36,7 @@ class File extends Component {
       // TO DO: check for query param `id`
       return
     }
-    this.setState({ isLoading: false})
+    this.setState({ isLoading: false })
     const file = this.props.location.state.file
     const body = this.props.location.state.body
     const mainBody = this.props.location.state.body
@@ -78,7 +78,7 @@ class File extends Component {
         }
         return res.json()
       })
-      .then(response => { 
+      .then(response => {
         this.getFile()
         this.setState({ isEditing: false })
         return
