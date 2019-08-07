@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { logout } from '../utils/auth'
 
 import SEO from '../components/seo'
+
+import { logout } from '../utils/auth'
+import { BASE_URL } from '../utils/fetch'
 
 class Logout extends React.Component {
   componentDidMount() {
     logout()
-    fetch('https://api.files.crandall.dev/logout', {
+    fetch(`${BASE_URL}/logout`, {
       credentials: 'include',
     })
       .then(res => res.json())
@@ -26,7 +28,7 @@ class Logout extends React.Component {
           paddingTop: 0,
         }}
       >
-        <SEO title="Page two" />
+        <SEO title="Logout" />
         <header className="header">
           <h1>You have successfully logged out!</h1>
           <p>
