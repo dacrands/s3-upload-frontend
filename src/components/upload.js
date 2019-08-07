@@ -2,6 +2,8 @@ import React from 'react'
 import { navigate } from 'gatsby'
 import { Link } from '@reach/router'
 
+import { BASE_URL } from '../utils/fetch'
+
 const MAX_TEXT_LEN = 130
 
 class Upload extends React.Component {
@@ -35,7 +37,7 @@ class Upload extends React.Component {
     }
     const data = new FormData(event.target)
     this.setState({ isSubmitting: true })
-    fetch('https://api.files.crandall.dev/files', {
+    fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
       credentials: 'include',

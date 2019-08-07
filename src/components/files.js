@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import { BASE_URL } from '../utils/fetch'
+
 class Files extends React.Component {
   constructor(props) {
     super(props)
@@ -18,7 +20,7 @@ class Files extends React.Component {
 
   componentDidMount() {
     this.setState({ isLoading: true })
-    fetch('https://api.files.crandall.dev/files', {
+    fetch(`${BASE_URL}/files`, {
       credentials: 'include',
     })
       .then(res => {

@@ -1,6 +1,8 @@
 import React from 'react'
 import { navigate } from 'gatsby'
+
 import { setUser } from '../utils/auth'
+import { BASE_URL } from '../utils/fetch'
 
 class Login extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     const data = new FormData(event.target)
-    fetch('https://api.files.crandall.dev/login', {
+    fetch(`${BASE_URL}/login`, {
       method: 'POST',
       body: data,
       credentials: 'include',

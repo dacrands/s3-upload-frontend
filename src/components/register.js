@@ -1,6 +1,8 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 
+import { BASE_URL } from '../utils/fetch'
+
 class Register extends React.Component {
   constructor(props) {
     super(props)
@@ -40,7 +42,7 @@ class Register extends React.Component {
       return
     }
     const data = new FormData(event.target)
-    fetch('https://api.files.crandall.dev/register', {
+    fetch(`${BASE_URL}/register`, {
       method: 'POST',
       body: data,
       credentials: 'include',

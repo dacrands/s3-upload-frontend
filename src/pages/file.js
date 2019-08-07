@@ -4,6 +4,8 @@ import { Link, navigate } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
+import { BASE_URL } from "../utils/fetch"
+
 const MAX_BODY_LEN = 130
 
 class File extends Component {
@@ -65,7 +67,7 @@ class File extends Component {
   }
 
   editFile(data) {
-    fetch(`https://api.files.crandall.dev/files/${this.state.id}/edit`, {
+    fetch(`${BASE_URL}/files/${this.state.id}/edit`, {
       credentials: 'include',
       body: data,
       method: 'PATCH',
@@ -103,7 +105,7 @@ class File extends Component {
     }
 
     this.setState({ isDeleting: true })
-    fetch(`https://api.files.crandall.dev/files/${this.state.id}/delete`, {
+    fetch(`${BASE_URL}/files/${this.state.id}/delete`, {
       credentials: 'include',
       method: 'DELETE',
     })
@@ -126,7 +128,7 @@ class File extends Component {
   }
 
   getFile() {
-    fetch(`https://api.files.crandall.dev/files/${this.state.id}`, {
+    fetch(`${BASE_URL}/files/${this.state.id}`, {
       credentials: 'include',
     })
       .then(res => {
@@ -146,7 +148,7 @@ class File extends Component {
         return
       })
       .catch(e => {
-        alert(e)
+        alert(e.msg)
         return
       })
   }
