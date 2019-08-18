@@ -59,9 +59,14 @@ class Files extends React.Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <header className="header">
-          <h1>Loading...</h1>
-        </header>
+        <div>
+          <header className="header">
+            <h1>Loading...</h1>
+          </header>
+          <div className="loader__container">
+            <div className="loader" />
+          </div>
+        </div>
       )
     }
     if (this.state.fetchErr) {
