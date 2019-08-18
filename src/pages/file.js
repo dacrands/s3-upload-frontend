@@ -35,10 +35,9 @@ class File extends Component {
     if (!this.props.location.state) {
       // TO DO: check for query param `id`
       return
-    }
-    this.setState({ isLoading: false })
+    }    
     const { file, body, mainBody, id } = this.props.location.state
-    this.setState({ file, body, id, mainBody, didUpdate: false })
+    this.setState({ file, body, id, mainBody, didUpdate: false, isLoading: false })
   }
 
   componentDidUpdate() {
