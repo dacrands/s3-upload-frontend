@@ -8,6 +8,9 @@ import { BASE_URL } from '../utils/fetch'
 
 const MAX_BODY_LEN = 130
 
+/* 
+  CRUD interface for a file
+ */
 class File extends Component {
   constructor(props) {
     super(props)
@@ -31,9 +34,9 @@ class File extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount() {          
+    /* Use location state to set file info pre fetch  */
     if (!this.props.location.state) {
-      // TO DO: check for query param `id`
       return
     }    
     const { file, body, mainBody, id } = this.props.location.state
@@ -41,6 +44,7 @@ class File extends Component {
   }
 
   componentDidUpdate() {
+    /* Fetch file once the component updates */
     if (!this.state.didUpdate) {
       this.getFile()
       this.setState({ didUpdate: true })
@@ -62,6 +66,9 @@ class File extends Component {
     this.editFile(data)
   }
 
+  /* 
+  FETCHES
+ */
   editFile(data) {
     fetch(`${BASE_URL}/files/${this.state.id}/edit`, {
       credentials: 'include',
@@ -211,7 +218,7 @@ class File extends Component {
             <button
               aria-label="Edit file info"
               onClick={() => {
-                this.setState({ isEditing: !this.state.isEditing })
+                this.setState({ isEditing: !this.state.isEditing })                
               }}
             >
               {this.state.isEditing ? '\u2715' : '\u270E'}
