@@ -25,7 +25,7 @@ module.exports = {
         background_color: `#042291`,
         theme_color: `#042291`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/images/dc-logo-purple.png`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
