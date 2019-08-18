@@ -9,7 +9,7 @@ import { BASE_URL } from '../utils/fetch'
 const MAX_BODY_LEN = 130
 
 /* 
-  CRUD interface for a file
+  Create, Read, and Delete interface for a file
  */
 class File extends Component {
   constructor(props) {
