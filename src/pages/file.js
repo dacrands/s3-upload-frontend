@@ -128,6 +128,7 @@ class File extends Component {
   }
 
   getFile() {
+    this.setState({ isLoading: true })
     fetch(`${BASE_URL}/files/${this.state.id}`, {
       credentials: 'include',
     })
@@ -145,10 +146,12 @@ class File extends Component {
           body: response.file.body,
           mainBody: response.file.body,
         })
+        this.setState({ isLoading: false })
         return
       })
       .catch(e => {
         alert(e.msg)
+        this.setState({ isLoading: false })
         return
       })
   }
@@ -157,7 +160,7 @@ class File extends Component {
     if (this.state.id === -1) {
       return (
         <Layout>
-          <header className="header">
+          <header className="header">            
             <h1>No file selected</h1>
             <Link to="/">Return to Files</Link>
           </header>
@@ -170,6 +173,9 @@ class File extends Component {
           <header className="header">
             <h1>Loading file...</h1>
           </header>
+            <div className="loader__container">
+              <div className="loader" />
+            </div>
         </Layout>
       )
     }
