@@ -218,7 +218,11 @@ class File extends Component {
             <button
               aria-label="Edit file info"
               onClick={() => {
-                this.setState({ isEditing: !this.state.isEditing })                
+                this.setState({ isEditing: !this.state.isEditing })
+                // Set body back to original if user doesn't submit changes
+                if (this.state.isEditing) {
+                  this.setState({ body: this.state.mainBody })
+                }                
               }}
             >
               {this.state.isEditing ? '\u2715' : '\u270E'}
