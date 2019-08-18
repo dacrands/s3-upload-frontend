@@ -150,8 +150,8 @@ class File extends Component {
         return
       })
       .catch(e => {
-        alert(e.msg)
-        this.setState({ isLoading: false })
+        alert(`There was an error getting file ${this.state.file}`)
+        navigate('/')
         return
       })
   }
