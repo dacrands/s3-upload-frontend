@@ -37,10 +37,7 @@ class File extends Component {
       return
     }
     this.setState({ isLoading: false })
-    const file = this.props.location.state.file
-    const body = this.props.location.state.body
-    const mainBody = this.props.location.state.body
-    const id = this.props.location.state.id
+    const { file, body, mainBody, id } = this.props.location.state
     this.setState({ file, body, id, mainBody, didUpdate: false })
   }
 
