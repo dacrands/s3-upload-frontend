@@ -7,7 +7,7 @@ import SEO from '../components/seo'
 class Verify extends Component {
   constructor() {
     super()
-    this.state = { token: '' }
+    this.state = { token: '', hasToken: true }
     this.verifyToken = this.verifyToken.bind(this)
   }
 
@@ -15,7 +15,7 @@ class Verify extends Component {
     const verifyUrl = new URL(document.location.href)
     const token = verifyUrl.searchParams.get('token')
     if (!token) {
-      navigate('/')
+      this.setState({ hasToken: false})
       return
     }
     this.setState({ token })
@@ -43,6 +43,22 @@ class Verify extends Component {
   }
 
   render() {
+    if (!this.state.hasToken) {
+      return (
+        <Layout>
+          <SEO title="Verify" />
+          <header className="header">
+            <h1>No Token</h1>
+          </header>
+          <p>
+            You've reached the verify page without a token to verify.
+          </p>
+          <p>
+            <Link to="/">Go Home</Link>
+          </p>
+        </Layout>
+      )
+    }
     return (
       <Layout>
         <SEO title="Verify" />
