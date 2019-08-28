@@ -5,6 +5,7 @@ import { Link } from '@reach/router'
 import { BASE_URL } from '../utils/fetch'
 
 const MAX_TEXT_LEN = 130
+const MAX_FILE_SIZE = 1 * 1024 * 1024 * 1024
 
 class Upload extends React.Component {
   constructor(props) {
@@ -30,6 +31,14 @@ class Upload extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    if (!this.fileInput.current.files[0]) {
+      alert('No file selected.')
+      return
+    }
+    if (this.fileInput.current.files[0].size > MAX_FILE_SIZE) {
+      alert('That file is too big')
+      return
+    }
     // Evetually I will disable the button, but for now alert and return
     if (this.state.text.length > 130) {
       alert('Your text description is too long. Please shorten it.')
@@ -53,7 +62,7 @@ class Upload extends React.Component {
         navigate(`/`)
         return
       })
-      .catch(({ status, msg }) => {
+      .catch(({ status, msg }) => {        
         msg
           .json()
           .then(err => {
