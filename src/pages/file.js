@@ -15,7 +15,7 @@ class File extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      file: 'No file selected',
+      file: '',
       body: '',
       mainBody: '',
       date: '--, -- --- ---- --:--:-- ---',
@@ -174,7 +174,7 @@ class File extends Component {
       return (
         <Layout>
           <header className="header">
-            <h1>Loading file...</h1>
+              <h1>{`${this.state.file}`}</h1>                          
           </header>
             <div className="loader__container">
               <div className="loader" />
