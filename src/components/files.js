@@ -13,9 +13,10 @@ class Files extends React.Component {
       isLoading: true,
       fetchErr: false,
       errStatus: null,
-      errMsg: null,
+      errMsg: null,      
     }
     this.filterFiles = this.filterFiles.bind(this)
+    this.getFileExtCounts = this.getFileExtCounts.bind(this)
   }
 
   componentDidMount() {
@@ -34,11 +35,11 @@ class Files extends React.Component {
           files: response.files,
           filteredFiles: response.files,
           searchTerm: '',
-        })
-        this.setState({ isLoading: false })
+          isLoading: false,          
+        })                
         return
       })
-      .catch(e => {
+      .catch(e => {        
         this.setState({ isLoading: false, fetchErr: true })
         console.error(e.text)
         this.setState({
@@ -51,9 +52,20 @@ class Files extends React.Component {
 
   filterFiles(name) {
     let filteredArr = this.state.files.filter(file => {
-      return file.name.includes(name.target.value) > 0
+      return file.name.includes(name) > 0
     })
-    this.setState({ filteredFiles: filteredArr, searchTerm: name.target.value })
+    this.setState({ filteredFiles: filteredArr, searchTerm: name })
+  }
+
+  getFileExtCounts() {
+    const fileExtensions = {}    
+    for(let i = 0; i < this.state.files.length; i++) {
+      let ext = this.state.files[i].name.split('.').pop().toLowerCase()
+      !fileExtensions[ext]
+      ? fileExtensions[ext] = 1
+      : fileExtensions[ext]++      
+    }
+    return fileExtensions
   }
 
   render() {
@@ -86,7 +98,7 @@ class Files extends React.Component {
             type="searchbox"
             placeholder="Search files"
             value={this.state.searchTerm}
-            onChange={term => this.filterFiles(term)}
+            onChange={term => this.filterFiles(term.target.value)}
           />
           <Link
             className="btn btn--big"
@@ -95,6 +107,23 @@ class Files extends React.Component {
           >
             Upload
           </Link>
+          <div className="tag__container">
+            <button 
+            className="tag"
+            onClick={() => {this.filterFiles('')}}>
+                All Files
+            </button>
+            {
+              Object.keys(this.getFileExtCounts()).map(ext => (
+                <button 
+                onClick={() => {this.filterFiles(ext)}}
+                className="tag">
+                  {ext}: {` `} 
+                  {this.getFileExtCounts()[ext]}
+                </button>
+              ))
+            }
+          </div>
         </header>
         <div className="grid-wrap">
           {this.state.filteredFiles[0]
