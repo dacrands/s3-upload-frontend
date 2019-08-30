@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import { FaFileWord } from 'react-icons/fa';
+import { FaFilePdf } from 'react-icons/fa';
+import { FaFileExcel } from 'react-icons/fa';
+import { FaFileImage } from 'react-icons/fa';
+
 import { BASE_URL } from '../utils/fetch'
+
+const ICON_SIZE = 28
 
 class Files extends React.Component {
   constructor(props) {
@@ -17,6 +24,7 @@ class Files extends React.Component {
     }
     this.filterFiles = this.filterFiles.bind(this)
     this.getFileExtCounts = this.getFileExtCounts.bind(this)
+    this.getFileIcon = this.getFileIcon.bind(this)
   }
 
   componentDidMount() {
@@ -48,6 +56,23 @@ class Files extends React.Component {
         })
         return
       })
+  }
+
+  getFileIcon(ext) {
+    switch(ext) {
+      case 'docx':
+        return <FaFileWord color="#00a2ed" size={ICON_SIZE} />        
+      case 'pdf':
+        return <FaFilePdf color="#ff0000"  size={ICON_SIZE} />        
+      case 'xlsx':
+        return <FaFileExcel color="#008000" size={ICON_SIZE} />     
+      case 'jpg': 
+      case 'jpeg':
+      case 'png':
+        return <FaFileImage color="#663399" size={ICON_SIZE} />     
+      default:
+        return
+    }
   }
 
   filterFiles(name) {
@@ -118,6 +143,10 @@ class Files extends React.Component {
                 <button 
                 onClick={() => {this.filterFiles(ext)}}
                 className="tag">
+                  {
+                    this.getFileIcon(ext)
+                  }
+                  <br/>
                   {ext}: {` `} 
                   {this.getFileExtCounts()[ext]}
                 </button>
