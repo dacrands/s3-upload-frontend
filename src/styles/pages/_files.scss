@@ -7,6 +7,12 @@
   transition: all 200ms ease;    
   text-decoration: none;  
   height: min-content;
+  &:visited {    
+    color: rgb(106, 106, 122);
+    .files__item-title {
+      text-decoration: underline;
+    }
+  }
   &:hover {
     color: blue;  
     .files__item-title {
