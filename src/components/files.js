@@ -5,6 +5,7 @@ import { FaFileWord } from 'react-icons/fa';
 import { FaFilePdf } from 'react-icons/fa';
 import { FaFileExcel } from 'react-icons/fa';
 import { FaFileImage } from 'react-icons/fa';
+import { FaFile } from 'react-icons/fa';
 
 import { BASE_URL } from '../utils/fetch'
 
@@ -71,7 +72,7 @@ class Files extends React.Component {
       case 'png':
         return <FaFileImage color="#663399" size={ICON_SIZE} />     
       default:
-        return
+          return <FaFile color="#595d63" size={ICON_SIZE} />     
     }
   }
 
