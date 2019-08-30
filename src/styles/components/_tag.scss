@@ -1,13 +1,33 @@
 .tag__container {
-  margin-bottom: 20px;
+  margin-bottom: 20px;  
 }
 
 .tag {
-  background: #e5e7e7;
+  position: relative;
   border: none;
+  border: 1px dotted black; 
+  background: none;
   cursor: pointer;
   display: inline-block;
   margin: 5px;
   padding: 5px 12px;
   font-size: 90%;
+  &::before {
+    position: absolute;
+    content: "";
+    border-top: 2px solid black;
+    left: 0;  
+    right: 0;
+    top: -1px;
+  }
+}
+
+@media(min-width:1200px) {
+  .tag__container {
+    margin-top: 10px;    
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-110%);
+  }
 }
