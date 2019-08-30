@@ -3,3 +3,9 @@
   grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));      
   grid-gap: 12px;
 }
+
+@media(max-width: 600px) {
+  .grid-wrap {
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));  
+  }
+}
