@@ -212,44 +212,52 @@ class File extends Component {
         <header className="header">
           <h1>{this.state.file}</h1>
         </header>
-        <section className="">
+        <section className="grid-aside">
           {/* Download file */}
-          <div className="">
-            <h3>Download File</h3>
-            <a className="btn" href={this.state.url}>
-              Download
-            </a>
-          </div>
-          {/* Upload Date */}
-          <div className="">
-            <h3>Upload Date</h3>
-            <p>{this.state.date}</p>
-          </div>
-          <div className="">
-            <h3>Size</h3>
-            <p>{Number.parseFloat(this.state.size / 1000).toFixed(2)} KB</p>
+          <div>
+            <div className="box">
+              <h3>Download File</h3>
+              <a className="btn" href={this.state.url}>
+                Download
+              </a>
+            </div>
+            {/* Upload Date */}
+            <div className="box">
+              <h3>Upload Date</h3>
+              <p>{this.state.date}</p>
+            </div>
+            <div className="box">
+              <h3>Size</h3>
+              <p>{Number.parseFloat(this.state.size / 1000).toFixed(2)} KB</p>
+            </div>
+            {/* Delete file */}
+            <div className="box box--warning">
+              <h3>Delete</h3>
+              <button className="btn btn--warning" onClick={this.deleteFile}>
+                Delete
+              </button>
+            </div>
           </div>
           {/* Edit file info */}
-          <div className="">
+          <div className="box box--center">
             <h3>Description</h3>
             <button
               aria-label="Edit file info"
               onClick={() => {
-                this.setState({ isEditing: !this.state.isEditing })
+                this.setState({ isEditing: !this.state.isEditing })                
                 // Set body back to original if user doesn't submit changes
                 if (this.state.isEditing) {
                   this.setState({ body: this.state.mainBody })
                 }
               }}
-            >
+              >
               {this.state.isEditing ? '\u2715' : '\u270E'}
             </button>
             {!this.state.isEditing ? (
               <p>{this.state.mainBody}</p>
-            ) : (
-              <form onSubmit={this.handleSubmit}>
-                <textarea
-                  cols="40"
+              ) : (
+                <form className="form" onSubmit={this.handleSubmit}>
+                <textarea                                                    
                   rows="5"
                   type="text"
                   name="body"
@@ -276,13 +284,7 @@ class File extends Component {
               </form>
             )}
           </div>
-          {/* Delete file */}
-          <div className="">
-            <h3>Delete</h3>
-            <button className="btn btn--warning" onClick={this.deleteFile}>
-              Delete
-            </button>
-          </div>
+          
         </section>
         <Link to="/">Back to files</Link>
       </Layout>
