@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Just Files`,
+    title: `Files`,
     description: `A file hosting application that is all about accessibility`,
     author: `David Crandall`,
   },
@@ -20,7 +20,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `David Crandall File Hosting`,
-        short_name: `Just Files`,
+        short_name: `Files`,
         start_url: `/`,
         background_color: `#042291`,
         theme_color: `#042291`,

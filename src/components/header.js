@@ -9,7 +9,7 @@ const Header = ({ siteTitle }) => {
     return (
       <nav className="navbar">
         <Link to="/" activeStyle={{ textDecoration: 'underline' }}>
-          <h2>Files</h2>
+          <h2>{siteTitle}</h2>
         </Link>
 
         <ul className="navbar__links">
@@ -30,7 +30,7 @@ const Header = ({ siteTitle }) => {
   return (
     <nav className="navbar">
       <Link to="/" activeStyle={{ textDecoration: 'underline' }}>
-        <h2>Files</h2>
+        <h2>{siteTitle}</h2>
       </Link>        
       <Link className="btn" to="/upload" activeStyle={{ textDecoration: 'underline' }}>
         Upload
@@ -47,7 +47,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: `Just Files`,
+  siteTitle: `Files`,
 }
 
 export default Header
