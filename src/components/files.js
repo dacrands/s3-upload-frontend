@@ -124,8 +124,7 @@ class Files extends React.Component {
     }
     return (
       <div>
-        <header className="header">
-          <h1>{this.state.filteredFiles.length} Files</h1>
+        <header className="header">          
           <input
             className="search"
             type="searchbox"
@@ -142,7 +141,7 @@ class Files extends React.Component {
             >
               <FaRegFolder size={ICON_SIZE} />
               <br />
-              All Files
+              All Files ({this.state.files.length})
             </button>
             {Object.keys(this.getFileExtCounts()).map(ext => (
               <button
@@ -153,8 +152,8 @@ class Files extends React.Component {
               >
                 {this.getFileIcon(ext)}
                 <br />
-                {ext}: {` `}
-                {this.getFileExtCounts()[ext]}
+                {ext} {` `}
+                ({this.getFileExtCounts()[ext]})
               </button>
             ))}
           </div>
