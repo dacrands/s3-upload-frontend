@@ -49,16 +49,9 @@ class File extends Component {
       mainBody,
       didUpdate: false,
       isLoading: false,
-    })    
-    setTimeout(()=>{})
-  }
-
-  componentDidUpdate() {
-    /* Can't update on mount before the fetch  */    
-    if (!this.state.didUpdate) {
-      this.getFile()
-      this.setState({ didUpdate: true })
-    }
+    })     
+    /* Fetch once state is set */
+    setTimeout(()=>{this.getFile()})
   }
 
   handleChange(event) {
