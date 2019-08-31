@@ -24,6 +24,7 @@ class Files extends React.Component {
       errStatus: null,
       errMsg: null,
     }
+    this.fetchFiles = this.fetchFiles.bind(this)
     this.filterFiles = this.filterFiles.bind(this)
     this.getFileExtCounts = this.getFileExtCounts.bind(this)
     this.getFileIcon = this.getFileIcon.bind(this)
@@ -31,6 +32,10 @@ class Files extends React.Component {
 
   componentDidMount() {
     this.setState({ isLoading: true })
+    this.fetchFiles()
+  }
+
+  fetchFiles() {
     fetch(`${BASE_URL}/files`, {
       credentials: 'include',
     })
