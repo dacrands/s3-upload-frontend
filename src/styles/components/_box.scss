@@ -1,40 +1,17 @@
 .box {
-    display: flex;
-    flex-flow: wrap;
-  }
+  margin: 1rem;
+  border: 1px dotted rgb(39, 39, 41);
+  padding: 1em;
+  min-width: 200px;    
+}
   
-  .box__item {
-    margin: 1rem;
-    border: 1px dotted rgb(39, 39, 41);
-    padding: 1em;
-    min-width: 200px;
-  }
-  
-  .box__item-desc {
-    position: relative;
-  }
-  
-  .box__item-desc button {
-    /* display: inline; */
-    /* float: right; */
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: rgb(39, 39, 41);
-    color: white;
-  }
-  
-  .box__item-desc .btn {
-    cursor: pointer;
-    display: block;
-  }
-  
-  .box__item-desc p {
-    max-width: 400px;
-  }
-  
-  .box__item--warning {
-    border: 1px dotted red;
-    color: red;
-  }
+.box--warning {
+  border-color: red;
+  color: red;
+}
+
+.box--center {
+  max-width: 500px;
+  width: 100%;
+  margin: 1rem auto;
+}
