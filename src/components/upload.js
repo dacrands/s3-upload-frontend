@@ -62,7 +62,7 @@ class Upload extends React.Component {
         navigate(`/`)
         return
       })
-      .catch(({ status, msg }) => {        
+      .catch(({ status, msg }) => {
         msg
           .json()
           .then(err => {

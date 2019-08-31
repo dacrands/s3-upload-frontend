@@ -34,13 +34,20 @@ class File extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {          
+  componentDidMount() {
     /* Use location state to set file info pre fetch  */
     if (!this.props.location.state) {
       return
-    }    
+    }
     const { file, body, mainBody, id } = this.props.location.state
-    this.setState({ file, body, id, mainBody, didUpdate: false, isLoading: false })
+    this.setState({
+      file,
+      body,
+      id,
+      mainBody,
+      didUpdate: false,
+      isLoading: false,
+    })
   }
 
   componentDidUpdate() {
@@ -163,7 +170,7 @@ class File extends Component {
     if (this.state.id === -1) {
       return (
         <Layout>
-          <header className="header">            
+          <header className="header">
             <h1>No file selected</h1>
             <Link to="/">Return to Files</Link>
           </header>
@@ -174,11 +181,11 @@ class File extends Component {
       return (
         <Layout>
           <header className="header">
-              <h1>{`${this.state.file}`}</h1>                          
+            <h1>{`${this.state.file}`}</h1>
           </header>
-            <div className="loader__container">
-              <div className="loader" />
-            </div>
+          <div className="loader__container">
+            <div className="loader" />
+          </div>
         </Layout>
       )
     }
@@ -222,7 +229,7 @@ class File extends Component {
                 // Set body back to original if user doesn't submit changes
                 if (this.state.isEditing) {
                   this.setState({ body: this.state.mainBody })
-                }                
+                }
               }}
             >
               {this.state.isEditing ? '\u2715' : '\u270E'}

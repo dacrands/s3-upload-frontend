@@ -15,7 +15,7 @@ class Verify extends Component {
     const verifyUrl = new URL(document.location.href)
     const token = verifyUrl.searchParams.get('token')
     if (!token) {
-      this.setState({ hasToken: false})
+      this.setState({ hasToken: false })
       return
     }
     this.setState({ token })
@@ -50,9 +50,7 @@ class Verify extends Component {
           <header className="header">
             <h1>No Token</h1>
           </header>
-          <p>
-            You've reached the verify page without a token to verify.
-          </p>
+          <p>You've reached the verify page without a token to verify.</p>
           <p>
             <Link to="/">Go Home</Link>
           </p>

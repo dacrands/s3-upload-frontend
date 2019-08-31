@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import { FaFileWord } from 'react-icons/fa';
-import { FaFilePdf } from 'react-icons/fa';
-import { FaFileExcel } from 'react-icons/fa';
-import { FaFileImage } from 'react-icons/fa';
-import { FaFile } from 'react-icons/fa';
-import { FaRegFolder } from 'react-icons/fa';
+import { FaFileWord } from 'react-icons/fa'
+import { FaFilePdf } from 'react-icons/fa'
+import { FaFileExcel } from 'react-icons/fa'
+import { FaFileImage } from 'react-icons/fa'
+import { FaFile } from 'react-icons/fa'
+import { FaRegFolder } from 'react-icons/fa'
 
 import { BASE_URL } from '../utils/fetch'
 
@@ -22,7 +22,7 @@ class Files extends React.Component {
       isLoading: true,
       fetchErr: false,
       errStatus: null,
-      errMsg: null,      
+      errMsg: null,
     }
     this.filterFiles = this.filterFiles.bind(this)
     this.getFileExtCounts = this.getFileExtCounts.bind(this)
@@ -45,11 +45,11 @@ class Files extends React.Component {
           files: response.files,
           filteredFiles: response.files,
           searchTerm: '',
-          isLoading: false,          
-        })                
+          isLoading: false,
+        })
         return
       })
-      .catch(e => {        
+      .catch(e => {
         this.setState({ isLoading: false, fetchErr: true })
         console.error(e.text)
         this.setState({
@@ -61,19 +61,19 @@ class Files extends React.Component {
   }
 
   getFileIcon(ext) {
-    switch(ext) {
+    switch (ext) {
       case 'docx':
-        return <FaFileWord color="#00a2ed" size={ICON_SIZE} />        
+        return <FaFileWord color="#00a2ed" size={ICON_SIZE} />
       case 'pdf':
-        return <FaFilePdf color="#ff0000"  size={ICON_SIZE} />        
+        return <FaFilePdf color="#ff0000" size={ICON_SIZE} />
       case 'xlsx':
-        return <FaFileExcel color="#008000" size={ICON_SIZE} />     
-      case 'jpg': 
+        return <FaFileExcel color="#008000" size={ICON_SIZE} />
+      case 'jpg':
       case 'jpeg':
       case 'png':
-        return <FaFileImage color="#663399" size={ICON_SIZE} />     
+        return <FaFileImage color="#663399" size={ICON_SIZE} />
       default:
-          return <FaFile color="#595d63" size={ICON_SIZE} />     
+        return <FaFile color="#595d63" size={ICON_SIZE} />
     }
   }
 
@@ -85,12 +85,13 @@ class Files extends React.Component {
   }
 
   getFileExtCounts() {
-    const fileExtensions = {}    
-    for(let i = 0; i < this.state.files.length; i++) {
-      let ext = this.state.files[i].name.split('.').pop().toLowerCase()
-      !fileExtensions[ext]
-      ? fileExtensions[ext] = 1
-      : fileExtensions[ext]++      
+    const fileExtensions = {}
+    for (let i = 0; i < this.state.files.length; i++) {
+      let ext = this.state.files[i].name
+        .split('.')
+        .pop()
+        .toLowerCase()
+      !fileExtensions[ext] ? (fileExtensions[ext] = 1) : fileExtensions[ext]++
     }
     return fileExtensions
   }
@@ -135,27 +136,29 @@ class Files extends React.Component {
             Upload
           </Link>
           <div className="tag__container">
-            <button 
-            className="tag"
-            onClick={() => {this.filterFiles('')}}>
-                <FaRegFolder size={ICON_SIZE} />
-                <br/>
-                All Files
+            <button
+              className="tag"
+              onClick={() => {
+                this.filterFiles('')
+              }}
+            >
+              <FaRegFolder size={ICON_SIZE} />
+              <br />
+              All Files
             </button>
-            {
-              Object.keys(this.getFileExtCounts()).map(ext => (
-                <button 
-                onClick={() => {this.filterFiles(ext)}}
-                className="tag">
-                  {
-                    this.getFileIcon(ext)
-                  }
-                  <br/>
-                  {ext}: {` `} 
-                  {this.getFileExtCounts()[ext]}
-                </button>
-              ))
-            }
+            {Object.keys(this.getFileExtCounts()).map(ext => (
+              <button
+                onClick={() => {
+                  this.filterFiles(ext)
+                }}
+                className="tag"
+              >
+                {this.getFileIcon(ext)}
+                <br />
+                {ext}: {` `}
+                {this.getFileExtCounts()[ext]}
+              </button>
+            ))}
           </div>
         </header>
         <div className="grid-wrap">
