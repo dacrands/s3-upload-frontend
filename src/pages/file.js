@@ -163,9 +163,9 @@ class File extends Component {
   }
 
   render() {
-    {/*--------------------
+    /*--------------------
       NO FILE SELECTED
-    --------------------*/}
+    --------------------*/
     if (this.state.id === -1) {
       return (
         <Layout>
@@ -176,9 +176,9 @@ class File extends Component {
         </Layout>
       )
     }
-    {/*--------------------
+    /*--------------------
         LOADING FILE
-    --------------------*/}
+    --------------------*/
     if (this.state.isLoading) {
       return (
         <Layout>
@@ -191,9 +191,9 @@ class File extends Component {
         </Layout>
       )
     }
-    {/*--------------------
+    /*--------------------
         DELETING FILE
-    --------------------*/}
+    --------------------*/
     if (this.state.isDeleting) {
       return (
         <Layout>
@@ -203,9 +203,9 @@ class File extends Component {
         </Layout>
       )
     }
-    {/*--------------------  
+    /*--------------------  
              FILE
-      --------------------*/}
+      --------------------*/
     return (
       <Layout>
         <SEO title={this.state.file} />
