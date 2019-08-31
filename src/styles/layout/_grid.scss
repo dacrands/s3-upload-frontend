@@ -4,8 +4,17 @@
   grid-gap: 12px;
 }
 
+.grid-aside {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-gap: 1rem;
+}
+
 @media(max-width: 600px) {
   .grid-wrap {
     grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));  
+  }
+  .grid-aside {
+    display: block;
   }
 }
