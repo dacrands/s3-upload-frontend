@@ -128,13 +128,6 @@ class Files extends React.Component {
             value={this.state.searchTerm}
             onChange={term => this.filterFiles(term.target.value)}
           />
-          <Link
-            className="btn btn--big"
-            to="/upload"
-            style={{ float: 'right' }}
-          >
-            Upload
-          </Link>
           <div className="tag__container">
             <button
               className="tag"
@@ -161,7 +154,7 @@ class Files extends React.Component {
             ))}
           </div>
         </header>
-        <div className="grid-wrap">
+        <section className="grid-wrap">
           {this.state.filteredFiles[0]
             ? this.state.filteredFiles.map(file => (
                 <Link
@@ -179,7 +172,7 @@ class Files extends React.Component {
                 </Link>
               ))
             : null}
-        </div>
+        </section>
       </div>
     )
   }
