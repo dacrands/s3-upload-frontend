@@ -4,6 +4,11 @@ import { Link } from '@reach/router'
 
 import { BASE_URL } from '../utils/fetch'
 
+/* 
+POST a file with a short description (<= 130 chars)
+Uses the Fetch API and FormData object.
+ */
+
 const MAX_TEXT_LEN = 130
 const MAX_FILE_SIZE = 1 * 1024 * 1024 * 1024
 
@@ -31,6 +36,7 @@ class Upload extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    //TODO create validation func
     if (!this.fileInput.current.files[0]) {
       alert('No file selected.')
       return
@@ -39,12 +45,12 @@ class Upload extends React.Component {
       alert('That file is too big')
       return
     }
-    // Evetually I will disable the button, but for now alert and return
     if (this.state.text.length > 130) {
       alert('Your text description is too long. Please shorten it.')
       return
     }
     const data = new FormData(event.target)
+    //TODO create postFile()
     this.setState({ isSubmitting: true })
     fetch(`${BASE_URL}/files`, {
       method: 'POST',
@@ -114,16 +120,11 @@ class Upload extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            {/* 
-                        QD solution for now....sorry about that, couldn't resist. 
-                        Shows avail chars in green, changes value to 'too long,' turns red 
-                        when exceeds desc text limit.
-                    */}
             <small
               style={
                 this.state.text.length < MAX_TEXT_LEN + 1
-                  ? { color: 'green' }
-                  : { color: 'red' }
+                  ? { color: 'green' } 
+                  : { color: 'red' } // red indicates text is too long
               }
             >
               {this.state.text.length < MAX_TEXT_LEN + 1
