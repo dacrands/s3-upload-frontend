@@ -77,11 +77,11 @@ class Files extends React.Component {
     }
   }
 
-  filterFiles(name) {
+  filterFiles(query) {
     let filteredArr = this.state.files.filter(file => {
-      return file.name.toLowerCase().includes(name.toLowerCase()) > 0
+      return file.name.toLowerCase().includes(query.toLowerCase()) > 0
     })
-    this.setState({ filteredFiles: filteredArr, searchTerm: name })
+    this.setState({ filteredFiles: filteredArr, searchTerm: query })
   }
 
   getFileExtCounts() {
