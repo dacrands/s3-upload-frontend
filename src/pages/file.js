@@ -8,8 +8,10 @@ import { BASE_URL } from '../utils/fetch'
 
 const MAX_BODY_LEN = 130
 
-/* 
-  Create, Read, and Delete interface for a file
+/*
+
+Read, Patch, and Delete interface for a file
+
  */
 class File extends Component {
   constructor(props) {
@@ -35,7 +37,7 @@ class File extends Component {
   }
 
   componentDidMount() {
-    /* Use location state to set file info pre fetch  */
+    /* Use location state from <Link/> to set file info pre fetch  */
     if (!this.props.location.state) {
       return
     }
@@ -47,11 +49,12 @@ class File extends Component {
       mainBody,
       didUpdate: false,
       isLoading: false,
-    })
+    })    
+    setTimeout(()=>{})
   }
 
   componentDidUpdate() {
-    /* Fetch file once the component updates */
+    /* Can't update on mount before the fetch  */    
     if (!this.state.didUpdate) {
       this.getFile()
       this.setState({ didUpdate: true })
@@ -73,9 +76,9 @@ class File extends Component {
     this.editFile(data)
   }
 
-  /* 
-  FETCHES
- */
+  /*================== 
+        FETCHES
+ ==================*/
   editFile(data) {
     fetch(`${BASE_URL}/files/${this.state.id}/edit`, {
       credentials: 'include',
@@ -167,6 +170,9 @@ class File extends Component {
   }
 
   render() {
+    {/*--------------------
+      NO FILE SELECTED
+    --------------------*/}
     if (this.state.id === -1) {
       return (
         <Layout>
@@ -177,6 +183,9 @@ class File extends Component {
         </Layout>
       )
     }
+    {/*--------------------
+        LOADING FILE
+    --------------------*/}
     if (this.state.isLoading) {
       return (
         <Layout>
@@ -189,6 +198,9 @@ class File extends Component {
         </Layout>
       )
     }
+    {/*--------------------
+        DELETING FILE
+    --------------------*/}
     if (this.state.isDeleting) {
       return (
         <Layout>
@@ -198,29 +210,34 @@ class File extends Component {
         </Layout>
       )
     }
+    {/*--------------------  
+             FILE
+      --------------------*/}
     return (
       <Layout>
         <SEO title={this.state.file} />
         <header className="header">
           <h1>{this.state.file}</h1>
         </header>
-        <section className="box">
-          <div className="box__item">
+        <section className="">
+          {/* Download file */}
+          <div className="">
             <h3>Download File</h3>
             <a className="btn" href={this.state.url}>
               Download
             </a>
           </div>
-          <div className="box__item">
+          {/* Upload Date */}
+          <div className="">
             <h3>Upload Date</h3>
             <p>{this.state.date}</p>
           </div>
-          <div className="box__item">
+          <div className="">
             <h3>Size</h3>
             <p>{Number.parseFloat(this.state.size / 1000).toFixed(2)} KB</p>
           </div>
-
-          <div className="box__item box__item-desc">
+          {/* Edit file info */}
+          <div className="">
             <h3>Description</h3>
             <button
               aria-label="Edit file info"
@@ -266,8 +283,8 @@ class File extends Component {
               </form>
             )}
           </div>
-
-          <div className="box__item box__item--warning">
+          {/* Delete file */}
+          <div className="">
             <h3>Delete</h3>
             <button className="btn btn--warning" onClick={this.deleteFile}>
               Delete
