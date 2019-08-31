@@ -79,7 +79,7 @@ class Files extends React.Component {
 
   filterFiles(name) {
     let filteredArr = this.state.files.filter(file => {
-      return file.name.includes(name) > 0
+      return file.name.toLowerCase().includes(name.toLowerCase()) > 0
     })
     this.setState({ filteredFiles: filteredArr, searchTerm: name })
   }
