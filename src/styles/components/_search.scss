@@ -4,18 +4,12 @@
   margin: 0 auto;
   margin-bottom: 2rem;
   padding: 0.5rem;
-  border: none;
-  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */  
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  border: 2px solid #959d9e;
+  border: 1px solid transparent;
+  background: #f3f5f5;  
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);    
+  &:focus {
+    outline: none;
+    border: 1px solid black;  
+  }
 }
   
-.search:focus {
-  outline: none;
-  border: 2px solid #224adb;
-  /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
-}
-
-.search:focus::placeholder {
-  color: #224adb;
-}
