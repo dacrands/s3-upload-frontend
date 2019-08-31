@@ -1,23 +1,23 @@
 .files__item {
   position: relative;
   display: block;
-  border: 1px dotted black;   
+  border: 1px dotted $black;   
   // Fix clipping of border on mobile
   margin-right: 1px;
   margin-left: 1px;
   padding: 1rem;
-  color: rgb(106, 106, 122);
+  color: $gray;
   transition: all 200ms ease;    
   text-decoration: none;  
   height: min-content;
   &:visited {    
-    color: rgb(106, 106, 122);
+    color: $gray;
     .files__item-title {
       text-decoration: underline;
     }
   }
   &:hover {
-    color: blue;  
+    color: $blue;  
     .files__item-title {
       text-decoration: underline;
     }
@@ -25,14 +25,13 @@
   &::before {
     position: absolute;
     content: "";
-    border-top: 2px solid black;
+    border-top: 2px solid $black;
     left: 0;  
     right: 0;
     top: -1px;
   }
 }
 .files__item-title {
-  color: rbga(0,0,0,0.8);
   margin-bottom: 1rem;  
 }
 

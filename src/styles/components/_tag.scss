@@ -5,7 +5,7 @@
 .tag {
   position: relative;
   border: none;
-  border: 1px dotted black; 
+  border: 1px dotted $black; 
   background: none;
   cursor: pointer;
   display: inline-block;
@@ -15,7 +15,7 @@
   &::before {
     position: absolute;
     content: "";
-    border-top: 2px solid black;
+    border-top: 2px solid $black;
     left: 0;  
     right: 0;
     top: -1px;
