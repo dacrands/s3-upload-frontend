@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import { Link, navigate } from 'gatsby'
 
+import { FaEdit } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
+
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 import { BASE_URL } from '../utils/fetch'
 
 const MAX_BODY_LEN = 130
+const ICON_SIZE = 24
 
 /*
 
@@ -240,8 +244,8 @@ class File extends Component {
           </div>
           {/* Edit file info */}
           <div className="box box--center">
-            <h3>Description</h3>
             <button
+              style={{ float: "right", border: "none", background: "none", color: "#8d8f91", cursor: "pointer" }}
               aria-label="Edit file info"
               onClick={() => {
                 this.setState({ isEditing: !this.state.isEditing })                
@@ -251,8 +255,9 @@ class File extends Component {
                 }
               }}
               >
-              {this.state.isEditing ? '\u2715' : '\u270E'}
+              {this.state.isEditing ?  <FaTimes size={ICON_SIZE} /> : <FaEdit size={ICON_SIZE} />}
             </button>
+            <h3>Description</h3>
             {!this.state.isEditing ? (
               <p>{this.state.mainBody}</p>
               ) : (
