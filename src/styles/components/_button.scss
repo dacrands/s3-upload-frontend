@@ -1,6 +1,6 @@
 .btn {
-    background: #224adb;
-    color: #ffffff;
+    background: $blue;
+    color: $white;
     display: inline-block;
     padding: 0.25rem 0.75rem;
     text-decoration: none;
@@ -14,11 +14,11 @@
   }
   
   .btn:hover {
-    background: #1b3aaa;
-    color: rgb(235, 230, 230);
+    background: $blue--shade;
+    color: $white--shade;
   }
   .btn:visited {
-    color: rgb(235, 230, 230);
+    color: $white--shade;
   }
   
   .btn--big {
@@ -27,11 +27,10 @@
   }
   
   .btn--warning {
-    background: red;
+    background: $red;
   }
   
-  
   .btn--warning:hover {
-    background: rgb(148, 4, 4);
+    background: $red--shade;
   }
   
