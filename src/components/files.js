@@ -175,7 +175,7 @@ class Files extends React.Component {
           {this.state.filteredFiles[0]
             ? this.state.filteredFiles.map(file => (
                 <Link
-                  className="files__item"
+                  className="tag files__item"
                   key={file.name}
                   to="/file"
                   state={{

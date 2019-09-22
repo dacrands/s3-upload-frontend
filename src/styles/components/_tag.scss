@@ -1,5 +1,5 @@
 .tag__container {
-  margin-bottom: 20px;  
+  margin-bottom: 25px;  
 }
 
 .tag {
@@ -12,6 +12,7 @@
   margin: 5px;
   padding: 5px 12px;
   font-size: 90%;
+  transition: all 200ms ease;  
   &::before {
     position: absolute;
     content: "";
@@ -20,11 +21,15 @@
     right: 0;
     top: -1px;
   }
+  &:hover {
+    color: $blue;
+    &::before{ border-top-color: $blue; }    
+  }
 }
 
 @media(min-width:1200px) {
   .tag__container {
-    margin-top: 10px;    
+    margin-top: 15px;    
     position: absolute;
     display: flex;
     flex-direction: column;

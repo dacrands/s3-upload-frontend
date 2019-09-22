@@ -1,27 +1,12 @@
 .files__item {
   position: relative;
-  display: block;
-  border: 1px dotted $black;   
+  display: block;  
   // Fix clipping of border on mobile
   margin-right: 1px;
   margin-left: 1px;
   padding: 1rem;
-  color: $gray;
-  transition: all 200ms ease;    
-  text-decoration: none;  
-  height: min-content;
-  &:visited {    
-    color: $gray;
-    .files__item-title {
-      text-decoration: underline;
-    }
-  }
-  &:hover {
-    color: $blue;  
-    .files__item-title {
-      text-decoration: underline;
-    }
-  }
+  color: $gray;  
+  text-decoration: none;    
   &::before {
     position: absolute;
     content: "";
@@ -29,6 +14,19 @@
     left: 0;  
     right: 0;
     top: -1px;
+  }
+  &:visited {    
+    color: $gray;
+    .files__item-title {
+      text-decoration: underline;
+    }
+  }
+  &:hover {
+    .files__item-title {
+      color: $blue;  
+      text-decoration: underline;
+    }
+    &::before {border-top-color: $blue;}
   }
 }
 .files__item-title {
