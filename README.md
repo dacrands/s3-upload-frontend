@@ -2,7 +2,7 @@
 
 A file-hosting application that emphasizes simplicity and accessibility. 
 
-![Just files home page](https://i.imgur.com/Jk1ULgo.jpg)
+![Just files home page](https://github.com/dacrands/jan-port/blob/master/src/media/justfiles2.jpg)
 
 ## Getting Started
 
