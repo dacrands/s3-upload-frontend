@@ -158,6 +158,7 @@ class Files extends React.Component {
             </button>
             {Object.keys(this.getFileExtCounts()).map(ext => (
               <button
+                key={ext}
                 onClick={() => {
                   this.filterFiles(ext)
                 }}
