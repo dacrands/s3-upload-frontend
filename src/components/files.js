@@ -9,6 +9,7 @@ import { FaFile } from 'react-icons/fa'
 import { FaRegFolder } from 'react-icons/fa'
 
 import { BASE_URL } from '../utils/fetch'
+import { logout } from '../utils/auth'
 
 const ICON_SIZE = 28
 
@@ -117,8 +118,20 @@ class Files extends React.Component {
     if (this.state.fetchErr) {
       return (
         <header className="header">
-          <h1>{this.state.errStatus}</h1>
-          <p>{this.state.errMsg}</p>
+          <h1>{this.state.errStatus}</h1>          
+          {
+            this.state.errStatus === 403
+            ? <div>
+              { logout() }
+              <p>              
+                You are not authorized to view that page.
+                <br/>
+                Please either <Link to="login">login</Link> {` `}
+                or <Link to="register">register</Link>.
+              </p>                
+            </div>
+            : <p>{this.state.errMsg}</p>
+          }
         </header>
       )
     }
