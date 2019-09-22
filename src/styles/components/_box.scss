@@ -10,8 +10,10 @@
   color: $red;
 }
 
-.box--center {
-  max-width: 500px;
-  width: 100%;
-  margin: 1rem auto;
+@media(min-width: 600px) {  
+  .box--center {
+    max-width: 500px;
+    width: 100%;
+    margin: 15px auto;
+  }
 }
