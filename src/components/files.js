@@ -120,7 +120,7 @@ class Files extends React.Component {
         <header className="header">
           <h1>{this.state.errStatus}</h1>          
           {
-            this.state.errStatus === 403
+            this.state.errStatus === 401
             ? <div>
               { logout() }
               <p>              
