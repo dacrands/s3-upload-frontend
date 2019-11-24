@@ -51,15 +51,15 @@ class Upload extends React.Component {
     }
     const data = new FormData(event.target)
     //TODO create postFile()
-    this.setState({ isSubmitting: true })
-    fetch(`${BASE_URL}/files`, {
+    this.setState({ isSubmitting: true })    
+    fetch(`${BASE_URL}/files`, {      
       method: 'POST',
       body: data,
       credentials: 'include',
     })
-      .then(res => {
+      .then(res => {        
         if (res.status !== 200) {
-          throw { status: res.status, msg: res }
+          throw res
         }
         res.json()
       })
@@ -68,17 +68,25 @@ class Upload extends React.Component {
         navigate(`/`)
         return
       })
-      .catch(({ status, msg }) => {
-        msg
+      .catch(err => {      
+        try {
+          err
           .json()
           .then(err => {
             this.setState({ isSubmitting: false })
             alert(err.msg)
             return
           })
-          .catch(error => {
-            console.log(error)
+          .catch(err => {
+            console.log(err)
           })
+        }
+        catch(err) {
+          console.log(err)
+          this.setState({ isSubmitting: false })
+          alert("Failed to upload file.")
+          return
+        }                                  
       })
   }
 
