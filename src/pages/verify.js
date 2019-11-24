@@ -4,6 +4,8 @@ import { Link, navigate } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
+import { BASE_URL } from '../utils/fetch'
+
 class Verify extends Component {
   constructor() {
     super()
@@ -25,7 +27,7 @@ class Verify extends Component {
   }
 
   verifyToken() {
-    fetch(`https://api.files.crandall.dev/verify?token=${this.state.token}`)
+    fetch(`${BASE_URL}/verify?token=${this.state.token}`)
       .then(res => {
         return res.json()
       })
