@@ -130,12 +130,12 @@ class Upload extends React.Component {
             <br />
             <small
               style={
-                this.state.text.length < MAX_TEXT_LEN + 1
+                this.state.text.length <= MAX_TEXT_LEN
                   ? { color: 'green' } 
                   : { color: 'red' } // red indicates text is too long
               }
             >
-              {this.state.text.length < MAX_TEXT_LEN + 1
+              {this.state.text.length <= MAX_TEXT_LEN
                 ? `Characters available: ${MAX_TEXT_LEN -
                     this.state.text.length}`
                 : 'Please shorten your description.'}
