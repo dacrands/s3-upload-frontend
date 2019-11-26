@@ -37,6 +37,7 @@ class Upload extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     //TODO create validation func
+    debugger;
     if (!this.fileInput.current.files[0]) {
       alert('No file selected.')
       return
@@ -45,14 +46,14 @@ class Upload extends React.Component {
       alert('That file is too big')
       return
     }
-    if (this.state.text.length > 130) {
+    if (this.state.text.length > MAX_TEXT_LEN) {
       alert('Your text description is too long. Please shorten it.')
       return
     }
     const data = new FormData(event.target)
     //TODO create postFile()
     this.setState({ isSubmitting: true })    
-    fetch(`${BASE_URL}/files`, {      
+    fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
       credentials: 'include',
