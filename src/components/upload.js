@@ -42,12 +42,12 @@ class Upload extends React.Component {
     if (!this.isValidUpload()) {
       return
     }
-    const data = new FormData(event.target)    
-    this.setState({ isSubmitting: true })    
+    const data = new FormData(event.target)        
     this.uploadFileFetch(data)
   }
 
   uploadFileFetch(data) {
+    this.setState({ isSubmitting: true })    
     fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
