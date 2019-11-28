@@ -31,13 +31,17 @@ const Header = ({ siteTitle }) => {
     <nav className="navbar">
       <Link to="/" activeStyle={{ textDecoration: 'underline' }}>
         <h2>{siteTitle}</h2>
-      </Link>        
-      <Link className="btn" to="/upload" activeStyle={{ textDecoration: 'underline' }}>
+      </Link>
+      <Link
+        className="btn"
+        to="/upload"
+        activeStyle={{ textDecoration: 'underline' }}
+      >
         Upload
-      </Link>        
+      </Link>
       <Link to="/logout" activeStyle={{ textDecoration: 'underline' }}>
         Logout
-      </Link>        
+      </Link>
     </nav>
   )
 }

@@ -21,8 +21,8 @@ class Upload extends React.Component {
       isSubmitting: false,
     }
 
-    this.uploadFileFetch = this.uploadFileFetch.bind(this);
-    this.isValidUpload = this.isValidUpload.bind(this);
+    this.uploadFileFetch = this.uploadFileFetch.bind(this)
+    this.isValidUpload = this.isValidUpload.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.fileInput = React.createRef()
@@ -31,29 +31,29 @@ class Upload extends React.Component {
   componentDidMount() {
     this.setState({ date: new Date().toDateString() })
   }
-  
+
   handleChange(event) {
     let value = event.target.name
     this.setState({ [value]: event.target.value })
   }
 
   handleSubmit(event) {
-    event.preventDefault()    
+    event.preventDefault()
     if (!this.isValidUpload()) {
       return
     }
-    const data = new FormData(event.target)        
+    const data = new FormData(event.target)
     this.uploadFileFetch(data)
   }
 
   uploadFileFetch(data) {
-    this.setState({ isSubmitting: true })    
+    this.setState({ isSubmitting: true })
     fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
       credentials: 'include',
     })
-      .then(res => {        
+      .then(res => {
         if (res.status !== 200) {
           throw res
         }
@@ -64,25 +64,24 @@ class Upload extends React.Component {
         navigate(`/`)
         return
       })
-      .catch(err => {      
+      .catch(err => {
         try {
           err
-          .json()
-          .then(err => {
-            this.setState({ isSubmitting: false })
-            alert(err.msg)
-            return
-          })
-          .catch(err => {
-            console.log(err)
-          })
-        }
-        catch(err) {
+            .json()
+            .then(err => {
+              this.setState({ isSubmitting: false })
+              alert(err.msg)
+              return
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        } catch (err) {
           console.log(err)
           this.setState({ isSubmitting: false })
-          alert("Failed to upload file.")
+          alert('Failed to upload file.')
           return
-        }                                  
+        }
       })
   }
 
@@ -101,7 +100,6 @@ class Upload extends React.Component {
     }
     return true
   }
-
 
   render() {
     if (this.state.isSubmitting) {
@@ -144,7 +142,7 @@ class Upload extends React.Component {
             <small
               style={
                 this.state.text.length <= MAX_TEXT_LEN
-                  ? { color: 'green' } 
+                  ? { color: 'green' }
                   : { color: 'red' } // red indicates text is too long
               }
             >
