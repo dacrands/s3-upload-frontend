@@ -20,6 +20,7 @@ class Upload extends React.Component {
       date: '',
       isSubmitting: false,
     }
+    this.isValidUpload = this.isValidUpload.bind(this);
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.fileInput = React.createRef()
@@ -29,24 +30,30 @@ class Upload extends React.Component {
     this.setState({ date: new Date().toDateString() })
   }
 
+  isValidUpload() {
+    if (!this.fileInput.current.files[0]) {
+      alert('No file selected.')
+      return false
+    }
+    if (this.fileInput.current.files[0].size > MAX_FILE_SIZE) {
+      alert('That file is too big')
+      return false
+    }
+    if (this.state.text.length > MAX_TEXT_LEN) {
+      alert('Your text description is too long. Please shorten it.')
+      return false
+    }
+    return true
+  }
+
   handleChange(event) {
     let value = event.target.name
     this.setState({ [value]: event.target.value })
   }
 
   handleSubmit(event) {
-    event.preventDefault()
-    //TODO create validation func
-    if (!this.fileInput.current.files[0]) {
-      alert('No file selected.')
-      return
-    }
-    if (this.fileInput.current.files[0].size > MAX_FILE_SIZE) {
-      alert('That file is too big')
-      return
-    }
-    if (this.state.text.length > MAX_TEXT_LEN) {
-      alert('Your text description is too long. Please shorten it.')
+    event.preventDefault()    
+    if (!this.isValidUpload()) {
       return
     }
     const data = new FormData(event.target)
