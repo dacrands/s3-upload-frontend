@@ -20,6 +20,8 @@ class Upload extends React.Component {
       date: '',
       isSubmitting: false,
     }
+
+    this.uploadFileFetch = this.uploadFileFetch.bind(this);
     this.isValidUpload = this.isValidUpload.bind(this);
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,35 +32,7 @@ class Upload extends React.Component {
     this.setState({ date: new Date().toDateString() })
   }
 
-  isValidUpload() {
-    if (!this.fileInput.current.files[0]) {
-      alert('No file selected.')
-      return false
-    }
-    if (this.fileInput.current.files[0].size > MAX_FILE_SIZE) {
-      alert('That file is too big')
-      return false
-    }
-    if (this.state.text.length > MAX_TEXT_LEN) {
-      alert('Your text description is too long. Please shorten it.')
-      return false
-    }
-    return true
-  }
-
-  handleChange(event) {
-    let value = event.target.name
-    this.setState({ [value]: event.target.value })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()    
-    if (!this.isValidUpload()) {
-      return
-    }
-    const data = new FormData(event.target)
-    //TODO create postFile()
-    this.setState({ isSubmitting: true })    
+  uploadFileFetch(data) {
     fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
@@ -95,6 +69,37 @@ class Upload extends React.Component {
           return
         }                                  
       })
+  }
+
+  isValidUpload() {
+    if (!this.fileInput.current.files[0]) {
+      alert('No file selected.')
+      return false
+    }
+    if (this.fileInput.current.files[0].size > MAX_FILE_SIZE) {
+      alert('That file is too big')
+      return false
+    }
+    if (this.state.text.length > MAX_TEXT_LEN) {
+      alert('Your text description is too long. Please shorten it.')
+      return false
+    }
+    return true
+  }
+
+  handleChange(event) {
+    let value = event.target.name
+    this.setState({ [value]: event.target.value })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()    
+    if (!this.isValidUpload()) {
+      return
+    }
+    const data = new FormData(event.target)    
+    this.setState({ isSubmitting: true })    
+    this.uploadFileFetch(data)
   }
 
   render() {
