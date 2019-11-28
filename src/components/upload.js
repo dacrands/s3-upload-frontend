@@ -31,6 +31,21 @@ class Upload extends React.Component {
   componentDidMount() {
     this.setState({ date: new Date().toDateString() })
   }
+  
+  handleChange(event) {
+    let value = event.target.name
+    this.setState({ [value]: event.target.value })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()    
+    if (!this.isValidUpload()) {
+      return
+    }
+    const data = new FormData(event.target)    
+    this.setState({ isSubmitting: true })    
+    this.uploadFileFetch(data)
+  }
 
   uploadFileFetch(data) {
     fetch(`${BASE_URL}/files`, {
@@ -87,20 +102,6 @@ class Upload extends React.Component {
     return true
   }
 
-  handleChange(event) {
-    let value = event.target.name
-    this.setState({ [value]: event.target.value })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()    
-    if (!this.isValidUpload()) {
-      return
-    }
-    const data = new FormData(event.target)    
-    this.setState({ isSubmitting: true })    
-    this.uploadFileFetch(data)
-  }
 
   render() {
     if (this.state.isSubmitting) {
