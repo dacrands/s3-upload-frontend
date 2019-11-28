@@ -23,7 +23,6 @@
     "react-icons": "^3.8.0",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19",
-    "typography-theme-noriega": "^0.16.19",
     "typography-theme-wordpress-2012": "^0.16.19"
   },
   "keywords": [
