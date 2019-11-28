@@ -53,9 +53,11 @@ class File extends Component {
       mainBody,
       didUpdate: false,
       isLoading: false,
-    })     
+    })
     /* Fetch once state is set */
-    setTimeout(()=>{this.getFile()})
+    setTimeout(() => {
+      this.getFile()
+    })
   }
 
   handleChange(event) {
@@ -106,9 +108,7 @@ class File extends Component {
 
   deleteFile() {
     const confirmed = window.confirm(
-      `You are about to delete ${
-        this.state.file
-      }. This action can not be undone.`
+      `You are about to delete ${this.state.file}. This action can not be undone.`
     )
     if (!confirmed) {
       return
@@ -245,24 +245,34 @@ class File extends Component {
           {/* Edit file info */}
           <div className="box box--center">
             <button
-              style={{ float: "right", border: "none", background: "none", color: "#8d8f91", cursor: "pointer" }}
+              style={{
+                float: 'right',
+                border: 'none',
+                background: 'none',
+                color: '#8d8f91',
+                cursor: 'pointer',
+              }}
               aria-label="Edit file info"
               onClick={() => {
-                this.setState({ isEditing: !this.state.isEditing })                
+                this.setState({ isEditing: !this.state.isEditing })
                 // Set body back to original if user doesn't submit changes
                 if (this.state.isEditing) {
                   this.setState({ body: this.state.mainBody })
                 }
               }}
-              >
-              {this.state.isEditing ?  <FaTimes size={ICON_SIZE} /> : <FaEdit size={ICON_SIZE} />}
+            >
+              {this.state.isEditing ? (
+                <FaTimes size={ICON_SIZE} />
+              ) : (
+                <FaEdit size={ICON_SIZE} />
+              )}
             </button>
             <h3>Description</h3>
             {!this.state.isEditing ? (
               <p>{this.state.mainBody}</p>
-              ) : (
-                <form className="form" onSubmit={this.handleSubmit}>
-                <textarea                                                    
+            ) : (
+              <form className="form" onSubmit={this.handleSubmit}>
+                <textarea
                   rows="5"
                   type="text"
                   name="body"
@@ -289,7 +299,6 @@ class File extends Component {
               </form>
             )}
           </div>
-          
         </section>
         <Link to="/">Back to files</Link>
       </Layout>

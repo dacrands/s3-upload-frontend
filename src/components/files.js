@@ -118,26 +118,26 @@ class Files extends React.Component {
     if (this.state.fetchErr) {
       return (
         <header className="header">
-          <h1>{this.state.errStatus}</h1>          
-          {
-            this.state.errStatus === 401
-            ? <div>
-              { logout() }
-              <p>              
+          <h1>{this.state.errStatus}</h1>
+          {this.state.errStatus === 401 ? (
+            <div>
+              {logout()}
+              <p>
                 You are not authorized to view that page.
-                <br/>
+                <br />
                 Please either <Link to="login">login</Link> {` `}
                 or <Link to="register">register</Link>.
-              </p>                
+              </p>
             </div>
-            : <p>{this.state.errMsg}</p>
-          }
+          ) : (
+            <p>{this.state.errMsg}</p>
+          )}
         </header>
       )
     }
     return (
       <div>
-        <header className="header">          
+        <header className="header">
           <input
             className="search"
             type="searchbox"
@@ -166,8 +166,7 @@ class Files extends React.Component {
               >
                 {this.getFileIcon(ext)}
                 <br />
-                {ext} {` `}
-                ({this.getFileExtCounts()[ext]})
+                {ext} {` `}({this.getFileExtCounts()[ext]})
               </button>
             ))}
           </div>
