@@ -20,10 +20,10 @@ class Files extends React.Component {
       files: [],
       filteredFiles: [],
       searchTerm: '',
+      errStatus: '',
+      errMsg: '',
       isLoading: true,
       fetchErr: false,
-      errStatus: null,
-      errMsg: null,
     }
     this.fetchFiles = this.fetchFiles.bind(this)
     this.filterFiles = this.filterFiles.bind(this)
