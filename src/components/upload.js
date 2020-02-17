@@ -10,7 +10,8 @@ Uses the Fetch API and FormData object.
  */
 
 const MAX_TEXT_LEN = 130
-const MAX_FILE_SIZE = 5 * 1024 * 1024
+const MAX_FILE_GB = 5
+const MAX_FILE_SIZE = MAX_FILE_GB * 1024 * 1024
 
 class Upload extends React.Component {
   constructor(props) {
@@ -122,9 +123,10 @@ class Upload extends React.Component {
             ref={this.fileDate}
           />
           <label htmlFor="file">
-            File:
-            <br />
+            File: {` `}
             <input type="file" name="file" id="file" ref={this.fileInput} />
+            <br />
+            <small>{`max file-size ${MAX_FILE_GB} GB`}</small>
           </label>
           <label htmlFor="text">
             File Info:
