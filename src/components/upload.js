@@ -10,7 +10,7 @@ Uses the Fetch API and FormData object.
  */
 
 const MAX_TEXT_LEN = 130
-const MAX_FILE_SIZE = 1 * 1024 * 1024 * 1024
+const MAX_FILE_SIZE = 5 * 1024 * 1024
 
 class Upload extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class Upload extends React.Component {
   }
 
   uploadFileFetch(data) {
-    this.setState({ isSubmitting: true })
+    this.setState({ isSubmitting: true })    
     fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
@@ -64,7 +64,7 @@ class Upload extends React.Component {
         navigate(`/`)
         return
       })
-      .catch(err => {
+      .catch(err => {        
         try {
           err
             .json()
