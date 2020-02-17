@@ -88,20 +88,22 @@ class Upload extends React.Component {
       })
   }
 
-  isValidUpload(fileInput) {
-    if (!fileInput.current.files[0]) {
-      alert('No file selected.')
-      return false
-    }
-    if (fileInput.current.files[0].size > MAX_FILE_SIZE) {
-      alert('That file is too big')
-      return false
-    }
-    if (this.state.text.length > MAX_TEXT_LEN) {
-      alert('Your text description is too long. Please shorten it.')
-      return false
-    }
-    return true
+  isValidUpload(maxFileSize, maxTextLen) {
+    return (fileInput => {
+      if (!fileInput.current.files[0]) {
+        alert('No file selected.')
+        return false
+      }
+      if (fileInput.current.files[0].size > maxFileSize) {
+        alert('That file is too big')
+        return false
+      }
+      if (this.state.text.length > maxTextLen) {
+        alert('Your text description is too long. Please shorten it.')
+        return false
+      }
+      return true
+    })
   }
 
   render() {
@@ -116,6 +118,7 @@ class Upload extends React.Component {
       <div>
         <FileForm 
           MAX_TEXT_LEN={MAX_TEXT_LEN} 
+          MAX_FILE_SIZE={MAX_FILE_SIZE} 
           MAX_FILE_GB={MAX_FILE_GB} 
           handleChange={this.handleChange} 
           handleSubmit={this.handleSubmit} 

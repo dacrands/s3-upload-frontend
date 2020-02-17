@@ -5,7 +5,7 @@ const FileForm = (props) => (
       className="form" 
       onSubmit={e => (
         props.handleSubmit(
-          e, props.isValidUpload, props.fileInput)
+          e, props.isValidUpload(props.MAX_FILE_SIZE, props.MAX_TEXT_LEN), props.fileInput)
       )
       }>
           <input
