@@ -4,6 +4,8 @@ import { Link } from '@reach/router'
 
 import { BASE_URL } from '../utils/fetch'
 
+import FileForm from '../components/fileForm'
+
 /* 
 POST a file with a short description (<= 130 chars)
 Uses the Fetch API and FormData object.
@@ -38,9 +40,9 @@ class Upload extends React.Component {
     this.setState({ [value]: event.target.value })
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, isValidUpload, fileInput) {
     event.preventDefault()
-    if (!this.isValidUpload()) {
+    if (!isValidUpload(fileInput)) {
       return
     }
     const data = new FormData(event.target)
@@ -86,12 +88,12 @@ class Upload extends React.Component {
       })
   }
 
-  isValidUpload() {
-    if (!this.fileInput.current.files[0]) {
+  isValidUpload(fileInput) {
+    if (!fileInput.current.files[0]) {
       alert('No file selected.')
       return false
     }
-    if (this.fileInput.current.files[0].size > MAX_FILE_SIZE) {
+    if (fileInput.current.files[0].size > MAX_FILE_SIZE) {
       alert('That file is too big')
       return false
     }
@@ -112,50 +114,15 @@ class Upload extends React.Component {
     }
     return (
       <div>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <input
-            hidden
-            type="text"
-            name="date"
-            id="date"
-            value={this.state.date}
-            onChange={this.handleChange}
-            ref={this.fileDate}
-          />
-          <label htmlFor="file">
-            File: {` `}
-            <input type="file" name="file" id="file" ref={this.fileInput} />
-            <br />
-            <small>{`max file-size ${MAX_FILE_GB} GB`}</small>
-          </label>
-          <label htmlFor="text">
-            File Info:
-            <br />
-            <textarea
-              type="text"
-              name="text"
-              id="text"
-              rows="5"
-              cols="30"
-              value={this.state.text}
-              onChange={this.handleChange}
-            />
-            <br />
-            <small
-              style={
-                this.state.text.length <= MAX_TEXT_LEN
-                  ? { color: 'green' }
-                  : { color: 'red' } // red indicates text is too long
-              }
-            >
-              {this.state.text.length <= MAX_TEXT_LEN
-                ? `Characters available: ${MAX_TEXT_LEN -
-                    this.state.text.length}`
-                : 'Please shorten your description.'}
-            </small>
-          </label>
-          <input className="btn" type="submit" value="Submit" />
-        </form>
+        <FileForm 
+          MAX_TEXT_LEN={MAX_TEXT_LEN} 
+          MAX_FILE_GB={MAX_FILE_GB} 
+          handleChange={this.handleChange} 
+          handleSubmit={this.handleSubmit} 
+          isValidUpload={this.isValidUpload} 
+          fileInput={this.fileInput}
+          text={this.state.text}
+          date={this.state.date} />        
         <Link to="/">Back to files</Link>
       </div>
     )
