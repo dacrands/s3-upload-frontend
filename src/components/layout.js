@@ -31,7 +31,12 @@ const Layout = ({ children }) => (
           <footer className="footer">
             <div>
               © {new Date().getFullYear()},{' '}
-              <a title="Dave Crandall's portfolio" href="https://crandall.dev" target="_blank" rel="noopener noreferrer">
+              <a
+                title="Dave Crandall's portfolio"
+                href="https://crandall.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 David Crandall
               </a>
             </div>

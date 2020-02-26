@@ -50,7 +50,7 @@ class Upload extends React.Component {
   }
 
   uploadFileFetch(data) {
-    this.setState({ isSubmitting: true })    
+    this.setState({ isSubmitting: true })
     fetch(`${BASE_URL}/files`, {
       method: 'POST',
       body: data,
@@ -67,7 +67,7 @@ class Upload extends React.Component {
         navigate(`/`)
         return
       })
-      .catch(err => {        
+      .catch(err => {
         try {
           err
             .json()
@@ -89,7 +89,7 @@ class Upload extends React.Component {
   }
 
   isValidUpload(maxFileSize, maxTextLen) {
-    return (fileInput => {
+    return fileInput => {
       if (!fileInput.current.files[0]) {
         alert('No file selected.')
         return false
@@ -103,7 +103,7 @@ class Upload extends React.Component {
         return false
       }
       return true
-    })
+    }
   }
 
   render() {
@@ -116,16 +116,17 @@ class Upload extends React.Component {
     }
     return (
       <div>
-        <FileForm 
-          MAX_TEXT_LEN={MAX_TEXT_LEN} 
-          MAX_FILE_SIZE={MAX_FILE_SIZE} 
-          MAX_FILE_GB={MAX_FILE_GB} 
-          handleChange={this.handleChange} 
-          handleSubmit={this.handleSubmit} 
-          isValidUpload={this.isValidUpload} 
+        <FileForm
+          MAX_TEXT_LEN={MAX_TEXT_LEN}
+          MAX_FILE_SIZE={MAX_FILE_SIZE}
+          MAX_FILE_GB={MAX_FILE_GB}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          isValidUpload={this.isValidUpload}
           fileInput={this.fileInput}
           text={this.state.text}
-          date={this.state.date} />        
+          date={this.state.date}
+        />
         <Link to="/">Back to files</Link>
       </div>
     )
