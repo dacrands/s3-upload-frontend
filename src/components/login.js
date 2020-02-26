@@ -14,6 +14,16 @@ class Login extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.loginFetch = this.loginFetch.bind(this)
+  }
+
+  async loginFetch (url, formData) {
+    let response = await fetch(`${url}/login`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    });
+    return await response.json();    
   }
 
   handleChange(event) {
@@ -24,14 +34,7 @@ class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     const data = new FormData(event.target)
-    fetch(`${BASE_URL}/login`, {
-      method: 'POST',
-      body: data,
-      credentials: 'include',
-    })
-      .then(res => {
-        return res.json()
-      })
+    this.loginFetch(BASE_URL, data)
       .then(response => {
         if (response.err) {
           alert(response.err)
