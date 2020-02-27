@@ -15,6 +15,7 @@ class Register extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.registerFetch = this.registerFetch.bind(this)
     this.isValidPassword = this.isValidPassword.bind(this)
   }
 
@@ -30,26 +31,30 @@ class Register extends React.Component {
     return true
   }
 
+  async registerFetch(url, formData) {
+    let response = await fetch(`${url}/register`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    })
+    return await response.json();
+  }
+
   handleSubmit(event) {
     event.preventDefault()
     if (this.state.username.length < 8 || this.state.username.length > 20) {
       alert(`Username must be between 8 and 20 characters`)
       return
     }
+
     const validPassword = this.isValidPassword()
     if (!validPassword) {
       alert(`Your passwords must match.`)
       return
     }
+
     const data = new FormData(event.target)
-    fetch(`${BASE_URL}/register`, {
-      method: 'POST',
-      body: data,
-      credentials: 'include',
-    })
-      .then(res => {
-        return res.json()
-      })
+    this.registerFetch(BASE_URL, data)
       .then(response => {
         if (response.err) {
           alert(response.err)
