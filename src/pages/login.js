@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 
 const LoginPage = () => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="Login" />
     <Login />
   </Layout>
 )
