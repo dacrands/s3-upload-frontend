@@ -1,13 +1,16 @@
 import React from 'react'
 
 import Layout from '../components/layout'
-import Register from '../components/register'
+import RegisterForm from '../components/registerForm'
 import SEO from '../components/seo'
 
 const RegisterPage = () => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <Register />
+    <SEO title="Register" />
+    <header className="header">
+      <h1>Register</h1>
+    </header>
+    <RegisterForm />
   </Layout>
 )
 
