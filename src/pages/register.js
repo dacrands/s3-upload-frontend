@@ -7,6 +7,9 @@ import SEO from '../components/seo'
 const RegisterPage = () => (
   <Layout>
     <SEO title="Register" />
+    <header className="header">
+      <h1>Register</h1>
+    </header>
     <Register />
   </Layout>
 )
