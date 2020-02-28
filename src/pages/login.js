@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Layout from '../components/layout'
-import Login from '../components/login'
+import Login from '../components/loginForm'
 import SEO from '../components/seo'
 
 const LoginPage = () => (
