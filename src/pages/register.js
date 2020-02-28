@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 
 const RegisterPage = () => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="Register" />
     <Register />
   </Layout>
 )
