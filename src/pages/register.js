@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Layout from '../components/layout'
-import Register from '../components/register'
+import RegisterForm from '../components/registerForm'
 import SEO from '../components/seo'
 
 const RegisterPage = () => (
@@ -10,7 +10,7 @@ const RegisterPage = () => (
     <header className="header">
       <h1>Register</h1>
     </header>
-    <Register />
+    <RegisterForm />
   </Layout>
 )
 

@@ -3,7 +3,7 @@ import { navigate } from 'gatsby'
 
 import { BASE_URL } from '../utils/fetch'
 
-class Register extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -134,4 +134,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register
+export default RegisterForm
