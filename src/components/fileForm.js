@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { getCSRF } from '../utils/fetch'
+
 const FileForm = props => (
   <form
     className="form"
@@ -17,6 +19,14 @@ const FileForm = props => (
       name="date"
       id="date"
       value={props.date}
+      onChange={props.handleChange}
+      ref={props.fileDate}
+    />
+    <input
+      hidden
+      type="hidden"
+      name="csrf_token"    
+      value={getCSRF()}
       onChange={props.handleChange}
       ref={props.fileDate}
     />
