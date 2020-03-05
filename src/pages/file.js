@@ -12,9 +12,9 @@ import { BASE_URL, getCSRF } from '../utils/fetch'
 const MAX_BODY_LEN = 130
 const ICON_SIZE = 24
 
-const headers = new Headers({
+const headers = {
   'X-CSRF-TOKEN': getCSRF()
-});
+};
 
 /*
 
