@@ -17,7 +17,9 @@ export const getCSRF = () => {
   try {
     return window.localStorage.csrf
   } catch (e) {
-    alert('Unable to retrieve CSRF token from local storage.')
+    if (typeof window !== 'undefined') {
+      alert('Unable to retrieve CSRF token from local storage.')
+    }
     console.log(e)
   }
 }
