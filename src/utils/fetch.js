@@ -17,6 +17,9 @@ export const getCSRF = () => {
   try {
     return window.localStorage.csrf
   } catch (e) {
+    // This is the only `alert` that breaks the build,
+    // even without the `return` in the `try` block.
+    // The cause is SSR, though the others work.     
     if (typeof window !== 'undefined') {
       alert('Unable to retrieve CSRF token from local storage.')
     }
