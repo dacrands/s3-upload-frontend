@@ -4,7 +4,7 @@ import { Link } from '@reach/router'
 
 import { BASE_URL } from '../utils/fetch'
 
-import FileForm from '../components/fileForm'
+import UploadFileForm from '../components/uploadFileForm'
 
 /* 
 POST a file with a short description (<= 130 chars)
@@ -116,7 +116,7 @@ class Upload extends React.Component {
     }
     return (
       <div>
-        <FileForm
+        <UploadFileForm
           MAX_TEXT_LEN={MAX_TEXT_LEN}
           MAX_FILE_SIZE={MAX_FILE_SIZE}
           MAX_FILE_GB={MAX_FILE_GB}
