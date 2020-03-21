@@ -2,7 +2,7 @@ import React from 'react'
 
 import { getCSRF } from '../utils/fetch'
 
-const FileForm = props => (
+const UploadFileForm = props => (
   <form
     className="form"
     onSubmit={e =>
@@ -65,4 +65,4 @@ const FileForm = props => (
   </form>
 )
 
-export default FileForm
+export default UploadFileForm
