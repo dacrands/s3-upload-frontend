@@ -7,10 +7,14 @@ import { FaTimes } from 'react-icons/fa'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-import { BASE_URL } from '../utils/fetch'
+import { BASE_URL, getCSRF } from '../utils/fetch'
 
 const MAX_BODY_LEN = 130
 const ICON_SIZE = 24
+
+const headers = {
+  'X-CSRF-TOKEN': getCSRF()
+};
 
 /*
 
@@ -78,8 +82,9 @@ class File extends Component {
   /*================== 
         FETCHES
  ==================*/
-  editFile(data) {
+  editFile(data) {        
     fetch(`${BASE_URL}/files/${this.state.id}/edit`, {
+      headers,
       credentials: 'include',
       body: data,
       method: 'PATCH',
@@ -116,6 +121,7 @@ class File extends Component {
 
     this.setState({ isDeleting: true })
     fetch(`${BASE_URL}/files/${this.state.id}/delete`, {
+      headers,
       credentials: 'include',
       method: 'DELETE',
     })
@@ -132,6 +138,7 @@ class File extends Component {
       })
       .catch(e => {
         alert(e)
+        console.log(e)
         this.setState({ isDeleting: false })
         return
       })

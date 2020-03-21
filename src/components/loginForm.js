@@ -2,7 +2,7 @@ import React from 'react'
 import { navigate } from 'gatsby'
 
 import { setUser } from '../utils/auth'
-import { BASE_URL } from '../utils/fetch'
+import { BASE_URL, setCSRF } from '../utils/fetch'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -41,6 +41,7 @@ class LoginForm extends React.Component {
           return
         }
         setUser(response.username)
+        setCSRF(response.csrf)
         navigate(`/`)
         return
       })

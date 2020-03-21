@@ -4,11 +4,12 @@ import { Link } from 'gatsby'
 import SEO from '../components/seo'
 
 import { logout } from '../utils/auth'
-import { BASE_URL } from '../utils/fetch'
+import { BASE_URL, deleteCSRF } from '../utils/fetch'
 
 class Logout extends React.Component {
   componentDidMount() {
     logout()
+    deleteCSRF()
     fetch(`${BASE_URL}/logout`, {
       credentials: 'include',
     })
